@@ -74,7 +74,7 @@ class Home extends MY_Controller {
         $this->sync(); 
         
         //product sync  
-        $this->product_sync();  
+        //$this->product_sync();  
           
         $this->manage();
       }
