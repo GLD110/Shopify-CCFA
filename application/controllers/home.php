@@ -71,7 +71,7 @@ class Home extends MY_Controller {
         $this->_searchSession = 'order_sels';            
           
         //order sync  
-        $this->sync(); 
+        //$this->sync(); 
         
         //product sync  
         //$this->product_sync();  
@@ -111,7 +111,9 @@ class Home extends MY_Controller {
     $this->load->library('pagination');
 
     // Renter to view
-    $this->load->view('view_home1', $data );
+    //$this->load->view('view_header');  
+    $this->load->view('view_home', $data );
+    //->load->view('view_footer');  
   }    
     
    public function login(){

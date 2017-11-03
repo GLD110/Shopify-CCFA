@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Josh Admin Template</title>
+    <title>Gallery | Josh Admin Template</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -12,22 +12,20 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <!-- global css -->
+    <!-- global css -->
     <link href="<?PHP echo base_url(); ?>asset/template/css/app.css" rel="stylesheet" type="text/css" />
     <!-- end of global css -->
     <!--page level css -->
-    <link href="<?PHP echo base_url(); ?>asset/template/vendors/fullcalendar/css/fullcalendar.css" rel="stylesheet" type="text/css" />
-    <link href="<?PHP echo base_url(); ?>asset/template/css/pages/calendar_custom.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" media="all" href="<?PHP echo base_url(); ?>asset/template/vendors/bower-jvectormap/css/jquery-jvectormap-1.2.2.css" />
-    <link rel="stylesheet" href="<?PHP echo base_url(); ?>asset/template/vendors/animate/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datetimepicker/css/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="<?PHP echo base_url(); ?>asset/template/css/pages/only_dashboard.css" />
+    <link href="<?PHP echo base_url(); ?>asset/template/css/pages/animated-masonry-gallery.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/fancybox/jquery.fancybox.css" media="screen" />
     <!--end of page level css-->
 </head>
 
 <body class="skin-josh">
     <header class="header">
-        <a href="index.html" class="logo">
-            <img src="<?PHP echo base_url(); ?>asset/template/img/logo.png" alt="Logo">
+        <a href="<?PHP echo base_url(); ?>home" class="logo">
+            <!-- Add the class icon to your logo image or logo icon to add the margining -->
+            <img src="<?PHP echo base_url(); ?>asset/template/img/logo.png" alt="logo">
         </a>
         <nav class="navbar navbar-static-top" role="navigation">
             <!-- Sidebar toggle button-->
@@ -47,52 +45,33 @@
                             <li class="unread message">
                                 <a href="javascript:;" class="message"> <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read"><span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span></i>
                                     <img src="<?PHP echo base_url(); ?>asset/template/img/authors/avatar.jpg" class="img-responsive message-image" alt="icon" />
-                                    <div class="message-body">
-                                        <strong>Riot Zeast</strong>
+                                    <div class="message-body"> <strong>Riot Zeast</strong>
                                         <br>Hello, You there?
-                                        <br>
-                                        <small>8 minutes ago</small>
-                                    </div>
+                                        <br> <small>8 minutes ago</small> </div>
                                 </a>
                             </li>
                             <li class="unread message">
-                                <a href="javascript:;" class="message">
-                                    <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read"><span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span></i>
+                                <a href="javascript:;" class="message"> <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read"><span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span></i>
                                     <img src="<?PHP echo base_url(); ?>asset/template/img/authors/avatar1.jpg" class="img-responsive message-image" alt="icon" />
-                                    <div class="message-body">
-                                        <strong>John Kerry</strong>
+                                    <div class="message-body"> <strong>John Kerry</strong>
                                         <br>Can we Meet ?
-                                        <br>
-                                        <small>45 minutes ago</small>
-                                    </div>
+                                        <br> <small>45 minutes ago</small> </div>
                                 </a>
                             </li>
                             <li class="unread message">
-                                <a href="javascript:;" class="message">
-                                    <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read">
-                                        <span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span>
-                                    </i>
+                                <a href="javascript:;" class="message"> <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read">                                         <span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span>                                     </i>
                                     <img src="<?PHP echo base_url(); ?>asset/template/img/authors/avatar5.jpg" class="img-responsive message-image" alt="icon" />
-                                    <div class="message-body">
-                                        <strong>Jenny Kerry</strong>
+                                    <div class="message-body"> <strong>Jenny Kerry</strong>
                                         <br>Dont forgot to call...
-                                        <br>
-                                        <small>An hour ago</small>
-                                    </div>
+                                        <br> <small>An hour ago</small> </div>
                                 </a>
                             </li>
                             <li class="unread message">
-                                <a href="javascript:;" class="message">
-                                    <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read">
-                                        <span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span>
-                                    </i>
+                                <a href="javascript:;" class="message"> <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read">                                         <span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span>                                     </i>
                                     <img src="<?PHP echo base_url(); ?>asset/template/img/authors/avatar4.jpg" class="img-responsive message-image" alt="icon" />
-                                    <div class="message-body">
-                                        <strong>Ronny</strong>
+                                    <div class="message-body"> <strong>Ronny</strong>
                                         <br>Hey! sup Dude?
-                                        <br>
-                                        <small>3 Hours ago</small>
-                                    </div>
+                                        <br> <small>3 Hours ago</small> </div>
                                 </a>
                             </li>
                             <li class="footer">
@@ -193,27 +172,19 @@
                             </li>
                             <!-- Menu Body -->
                             <li>
-                                <a href="view_user.html">
-                                    <i class="livicon" data-name="user" data-s="18"></i> My Profile
-                                </a>
+                                <a href="view_user.html"> <i class="livicon" data-name="user" data-s="18"></i> My Profile </a>
                             </li>
                             <li role="presentation"></li>
                             <li>
-                                <a href="adduser.html">
-                                    <i class="livicon" data-name="gears" data-s="18"></i> Account Settings
-                                </a>
+                                <a href="adduser.html"> <i class="livicon" data-name="gears" data-s="18"></i> Account Settings </a>
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="lockscreen.html">
-                                        <i class="livicon" data-name="lock" data-s="18"></i> Lock
-                                    </a>
+                                    <a href="lockscreen.html"> <i class="livicon" data-name="lock" data-s="18"></i> Lock </a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="login.html">
-                                        <i class="livicon" data-name="sign-out" data-s="18"></i> Logout
-                                    </a>
+                                    <a href="login.html"> <i class="livicon" data-name="sign-out" data-s="18"></i> Logout </a>
                                 </div>
                             </li>
                         </ul>
@@ -235,18 +206,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="<?PHP echo base_url(); ?>progressbar/settings">
-                                    <i class="livicon" data-c="#EF6F6C" title="Tasks" data-hc="#EF6F6C" data-name="list-ul" data-size="25" data-loop="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?PHP echo base_url(); ?>purchases/settings">
-                                    <i class="livicon" data-name="barchart" title="Gallery" data-c="#F89A14" data-hc="#F89A14" data-size="25" data-loop="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?PHP echo base_url(); ?>countdown/settings">
-                                    <i class="livicon" data-name="calendar" title="Users List" data-size="25" data-c="#01bc8c" data-hc="#01bc8c" data-loop="true"></i>
+                                <a href="<?PHP echo base_url(); ?>">
+                                    <i class="livicon" data-c="#EF6F6C" title="Gallery" data-hc="#EF6F6C" data-name="image" data-size="25" data-loop="true"></i>
                                 </a>
                             </li>
                         </ul>
@@ -254,87 +215,128 @@
                     <div class="clearfix"></div>
                     <!-- BEGIN SIDEBAR MENU -->
                     <ul id="menu" class="page-sidebar-menu">
-                        <li class="active">
+                        <li>
                             <a href="<?PHP echo base_url(); ?>home">
                                 <i class="livicon" data-name="home" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
                                 <span class="title">Dashboard</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="#">
-                                <i class="livicon" data-name="list-ul" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
-                                <span class="title">Progress Bar</span>
+                                <i class="livicon" data-name="image" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
+                                <span class="title">Products</span>
                                 <span class="fa arrow"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>progressbar/settings">
-                                        <i class="fa fa-angle-double-right"></i> Settings
+                                <li class="active">
+                                    <a href="<?PHP echo base_url(); ?>product/template">
+                                        <i class="fa fa-angle-double-right"></i> Template
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?PHP echo base_url(); ?>progressbar/styles">
-                                        <i class="fa fa-angle-double-right"></i> Styles
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>progressbar/advanced">
-                                        <i class="fa fa-angle-double-right"></i> Advanced
+                                    <a href="<?PHP echo base_url(); ?>product">
+                                        <i class="fa fa-angle-double-right"></i> Custom Products
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="livicon" data-name="barchart" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
-                                <span class="title">Purchases</span>
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>purchases/settings">
-                                        <i class="fa fa-angle-double-right"></i> Settings
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>purchases/styles">
-                                        <i class="fa fa-angle-double-right"></i> Styles
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>purchases/advanced">
-                                        <i class="fa fa-angle-double-right"></i> Advanced
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="livicon" data-name="calendar" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
-                                <span class="title">Countdown</span>
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>countdown/settings">
-                                        <i class="fa fa-angle-double-right"></i> Settings
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>countdown/styles">
-                                        <i class="fa fa-angle-double-right"></i> Styles
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>countdown/advanced">
-                                        <i class="fa fa-angle-double-right"></i> Advanced
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        </li>                                                
                     </ul>
                     <!-- END SIDEBAR MENU -->
                 </div>
             </section>
             <!-- /.sidebar -->
         </aside>
+        <!-- Right side column. Contains the navbar and content of the page -->
+        <aside class="right-side">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>Templates</h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="<?PHP echo base_url(); ?>home">
+                            <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">Products</a>
+                    </li>
+                    <li class="active">Templates</li>
+                </ol>
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="content gallery">
+                    <div class="row" id="slim">
+                        <div id="gallery">
+                            <div class="col-md-5 col-xs-12" id="gallery-header-center-left-title">All Galleries</div>
+                            <div class="pull-right">
+                                <div class="col-xs-12">
+                                    <button type="button" id="filter-all" class="btn btn-responsive btn-info btn-xs">All</button>
+                                    <button type="button" id="filter-studio" class="btn btn-responsive btn-primary btn-xs">Studio</button>
+                                    <button type="button" id="filter-landscape" class="btn btn-responsive btn-success btn-xs">Landscape</button>
+                                </div>
+                            </div>
+                            <div id="gallery-content">
+                                <div class="row" id="gallery-content-center">
+                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
+                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10.png" class="img-responsive all studio" alt="gallery">
+                                    </a>
+                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10-Landscape.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
+                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10-Landscape.png" class="img-responsive all landscape" alt="gallery">
+                                    </a>  
+                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
+                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 11x14.png" class="img-responsive all studio" alt="gallery">
+                                    </a>
+                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10-Landscape.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
+                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 11x14-Landscape.png" class="img-responsive all landscape" alt="gallery">
+                                    </a> 
+                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
+                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 12x16.png" class="img-responsive all studio" alt="gallery">
+                                    </a>
+                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10-Landscape.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
+                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 12x16-Landscape.png" class="img-responsive all landscape" alt="gallery">
+                                    </a> 
+                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
+                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 16x20.png" class="img-responsive all studio" alt="gallery">
+                                    </a>
+                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10-Landscape.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
+                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 16x20-Landscape.png" class="img-responsive all landscape" alt="gallery">
+                                    </a> 
+                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 16x16.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
+                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 16x16.png" class="img-responsive all studio" alt="gallery">
+                                    </a>
+                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 18x18.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
+                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 18x18.png" class="img-responsive all studio" alt="gallery">
+                                    </a>                                     
+                                </div>
+                            </div>
+                            <!-- .images-box -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- content -->
+        </aside>
+        <!-- right-side -->
+    </div>
+    <!-- ./wrapper -->
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Return to top" data-toggle="tooltip" data-placement="left">
+        <i class="livicon" data-name="plane-up" data-size="18" data-loop="true" data-c="#fff" data-hc="white"></i>
+    </a>
+    <!-- global js -->
+    <script src="<?PHP echo base_url(); ?>asset/template/js/app.js" type="text/javascript"></script>
+    <!-- end of global js -->
+    <!-- begining of page level js -->
+    <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/js/pages/jquery.isotope.min.js"></script>
+    <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/js/pages/animated-masonry-gallery.js"></script>
+    <!-- Add fancyBox main JS and CSS files -->
+    <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/fancybox/jquery.fancybox.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('.fancybox').fancybox();
+    });
+    </script>
+    <!-- end of page level js -->
+</body>
+
+</html>
