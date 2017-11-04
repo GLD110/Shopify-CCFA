@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Gallery | Josh Admin Template</title>
+    <title>Templates</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -230,7 +230,7 @@
                             <ul class="sub-menu">
                                 <li class="active">
                                     <a href="<?PHP echo base_url(); ?>product/template">
-                                        <i class="fa fa-angle-double-right"></i> Template
+                                        <i class="fa fa-angle-double-right"></i> Templates
                                     </a>
                                 </li>
                                 <li>
@@ -269,45 +269,25 @@
                     <div class="row" id="slim">
                         <div id="gallery">
                             <div class="col-md-5 col-xs-12" id="gallery-header-center-left-title">All Galleries</div>
+                            <div class="col-md-5 col-xs-12" id=""><a href="<?PHP echo base_url(); ?>product/upload_template" class="btn btn-primary">Upload Templates</a></div>                            
                             <div class="pull-right">
                                 <div class="col-xs-12">
                                     <button type="button" id="filter-all" class="btn btn-responsive btn-info btn-xs">All</button>
                                     <button type="button" id="filter-studio" class="btn btn-responsive btn-primary btn-xs">Studio</button>
-                                    <button type="button" id="filter-landscape" class="btn btn-responsive btn-success btn-xs">Landscape</button>
+                                    <button type="button" id="filter-landscape" class="btn btn-responsive btn-success btn-xs">Landscape</button>        
                                 </div>
                             </div>
-                            <div id="gallery-content">
+                            <div id="gallery-content" style="margin-top: 10px;">
                                 <div class="row" id="gallery-content-center">
-                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
-                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10.png" class="img-responsive all studio" alt="gallery">
+                                    
+                                    <?php $sno = 0;
+                                    foreach ($templates as $t):
+                                            $sno ++;
+                                    ?>
+                                    <a class="fancybox img-responsive" href="<?PHP echo base_url() . $t['image']; ?>" data-fancybox-group="gallery" title="<?PHP echo basename($t['image']); ?>">
+                                        <img src="<?PHP echo base_url() . $t['image']; ?>" class="img-responsive all <?PHP echo $t['dimension']; ?>" alt="gallery">
                                     </a>
-                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10-Landscape.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
-                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10-Landscape.png" class="img-responsive all landscape" alt="gallery">
-                                    </a>  
-                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
-                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 11x14.png" class="img-responsive all studio" alt="gallery">
-                                    </a>
-                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10-Landscape.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
-                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 11x14-Landscape.png" class="img-responsive all landscape" alt="gallery">
-                                    </a> 
-                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
-                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 12x16.png" class="img-responsive all studio" alt="gallery">
-                                    </a>
-                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10-Landscape.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
-                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 12x16-Landscape.png" class="img-responsive all landscape" alt="gallery">
-                                    </a> 
-                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
-                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 16x20.png" class="img-responsive all studio" alt="gallery">
-                                    </a>
-                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 8x10-Landscape.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
-                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 16x20-Landscape.png" class="img-responsive all landscape" alt="gallery">
-                                    </a> 
-                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 16x16.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
-                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 16x16.png" class="img-responsive all studio" alt="gallery">
-                                    </a>
-                                    <a class="fancybox img-responsive" href="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 18x18.png" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
-                                        <img src="<?PHP echo base_url(); ?>asset/template/img/img_holder/Template 18x18.png" class="img-responsive all studio" alt="gallery">
-                                    </a>                                     
+                                    <?php endforeach; ?>                                                
                                 </div>
                             </div>
                             <!-- .images-box -->

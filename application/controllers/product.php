@@ -57,31 +57,40 @@ class Product extends MY_Controller {
   public function template( $page =  0 ){
     // Check the login
     $this->is_logged_in();
+      
+    $directory = "product/server/php/files/";
+    $images = glob($directory . "*.png");
+      
+    $templates = array();
 
-    // Init the search value
-    $this->initSearchValue();
-
-    // Get data
-    $arrCondition =  array(
-         'name' => $this->_searchVal['name'],
-         'sort' => $this->_searchVal['sort_field'] . ' ' . $this->_searchVal['sort_direction'],
-         'page_number' => $page,
-         'page_size' => $this->_searchVal['page_size'],              
-    );
-    $data['query'] =  $this->Product_model->getList( $arrCondition );
-    $data['total_count'] = $this->Product_model->getTotalCount();
-    $data['page'] = $page;
-    $data['shop'] = $this->session->userdata('shop');
-    
-    // Define the rendering data
-    $data = $data + $this->setRenderData();
-    
-    // Load Pagenation
-    $this->load->library('pagination');
-    $this->load->library( 'LiquidLib' );
+    foreach($images as $image)
+    {
+        list($width, $height, $type, $attr) = getimagesize($image);
+        
+        if($width > $height)
+            $dimension = 'landscape';
+        else
+            $dimension = 'studio';
+        
+        $temp = array('image'=>$image, 'dimension'=>$dimension);
+        array_push($templates, $temp);
+    }      
+      
+    $data['templates'] = $templates;
 
     //$this->load->view('view_header');
     $this->load->view('view_templates', $data );
+    //$this->load->view('view_footer');
+  }    
+    
+  public function upload_template( $page =  0 ){
+    // Check the login
+    $this->is_logged_in();
+      
+    $data = array();  
+      
+    //$this->load->view('view_header');
+    $this->load->view('view_templates_upload', $data );
     //$this->load->view('view_footer');
   }    
   

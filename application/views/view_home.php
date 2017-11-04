@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Josh Admin Template</title>
+    <title>KanvasKreations</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -34,7 +34,7 @@
 
 <body class="skin-josh">
     <header class="header">
-        <a href="index.html" class="logo">
+        <a href="<?PHP echo base_url(); ?>home" class="logo">
             <img src="<?PHP echo base_url(); ?>asset/template/img/logo.png" alt="Logo">
         </a>
         <nav class="navbar navbar-static-top" role="navigation">
@@ -267,7 +267,7 @@
                             <ul class="sub-menu">
                                 <li>
                                     <a href="<?PHP echo base_url(); ?>product/template">
-                                        <i class="fa fa-angle-double-right"></i> Template
+                                        <i class="fa fa-angle-double-right"></i> Templates
                                     </a>
                                 </li>
                                 <li>
