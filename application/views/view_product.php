@@ -1,225 +1,376 @@
-<?php
-$config['base_url'] = base_url($this->config->item('index_page') . '/product/manage/');
-$config['total_rows'] = $total_count;
-$config['per_page'] = $sel_page_size;
-$config['num_links'] = 4;
+<!DOCTYPE html>
+<html>
 
-$config['first_link'] = 'First';
-$config['first_tag_open'] = '<li class="paginate_button previous" id="example1_previous">';
-$config['first_tag_close'] = '</li>';
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Products</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <!-- global css -->
+    <link href="<?PHP echo base_url(); ?>asset/template/css/app.css" rel="stylesheet" type="text/css" />
+    <!-- end of global css -->
+    <!--page level css -->
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/buttons.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/colReorder.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/rowReorder.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/buttons.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/scroller.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/css/pages/tables.css" />   
+    <!--end of page level css-->
+</head>
 
-$config['last_link'] = 'Last';
-$config['last_tag_open'] = '<li class="paginate_button next" id="example1_previous">';
-$config['last_tag_close'] = '</li>';
-
-$config['prev_link'] = '&lt;';
-$config['prev_tag_open'] = '<li class="paginate_button ">';
-$config['prev_tag_close'] = '</li>';
-
-$config['next_link'] = '&gt;';
-$config['next_tag_open'] = '<li class="paginate_button ">';
-$config['next_tag_close'] = '</li>';
-
-$config['num_tag_open'] = '<li class="paginate_button ">';
-$config['num_tag_close'] = '</li>';
-
-$config['cur_tag_open'] = '<li class="paginate_button active " disabled><a href = "#" disabled>';
-$config['cur_tag_close'] = '</a></li>';
-
-$this->pagination->initialize($config);
-
-$summary = 'Showing ' . ( $page + 1 ) . ' to ' . ( $page + $sel_page_size > $total_count ? $total_count : $page + $sel_page_size ) . ' of ' . $total_count . ' products';
-
-// Liquid
-$liquid = new LiquidTemplate();
-$liquid->parse( $this->config->item('SCHEMA_PRODUCT_LIQUID') );
-
-?>
-<style>
-    tr.warning td.new-date{ font-weight:bold; color:green; }
-</style>
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-        Product Markup
-    <!--    <small>List</small>-->
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="home"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Product Markup</li>
-    </ol>
-</section>
-
-<!-- Main content -->
-
-<section class="content">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box">
-                <div class="box-header">
-                    <div class="col-md-12 column"  style = "border-bottom:solid 1px #ddd; margin-bottom:4px; padding-bottom: 5px;" >
-                        <form style="display: inline" class = 'form-inline' id = 'frmSearch' action="<?php echo base_url($this->config->item('index_page') . '/product') ?>" method = "post" >
-                            <label>Product Name</label>&nbsp;:&nbsp;
-                            <input type = 'text' class="form-control input-group-sm" id = 'sel_name' name = 'sel_name' value = "<?PHP echo $sel_name; ?>" style = "width:450px;" >
-                            &nbsp;&nbsp;&nbsp;
-                            <label>Page Size</label>&nbsp;:&nbsp;
-                            <?PHP echo form_dropdown('sel_page_size', array(30 => 30, 50 => 50, 70 => 70, 100 => 100), $sel_page_size, 'id="sel_page_size" class="form-control input-group-sm"'); ?>
-
-                            <button type = "submit" class = "btn btn-info" ><i class="glyphicon glyphicon-search" ></i></button>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<!--                            <button type = "button" class = "btn btn-warning btn_sync" >Sync products</button>-->
-
-                            <input type = hidden id = 'sel_sort_field' name = 'sel_sort_field' value = '<?PHP echo $sel_sort_field; ?>' >
-                            <input type = hidden id = 'sel_sort_direction' name = 'sel_sort_direction' value = '<?PHP echo $sel_sort_direction; ?>' >
-                        </form>
-                    </div>
-                    <div id = 'ret' class="col-md-12 column" ></div>
-                </div><!-- /.box-header -->
-
-                <!-- Pagenation -->
-                <div class = 'box-body' style = "padding:0px 10px;">
-                    <div class="col-sm-5">
-                        <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
-                            <?php echo $summary; ?>    
-                        </div>
-                    </div>
-                    <div class="col-sm-7">
-                        <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                            <ul class="pagination">
-                                <?php echo $this->pagination->create_links(); ?>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <table id="example2" class="table table-bordered table-hover">
-                        <thead>
-                            <tr class = "text-center">
-                                <th class = "text-center" >No.</th>
-                                <th class = "text-center" style = "width:30%" ><a href = "javascript:sort('title');" >Title</a></th>
-                                <th class = "text-center" style = "width:30%" >Handle</th>
-                                <th class = "text-center">SKU</th>
-                                <th class = "text-center">Price</th>
-                                <th class = "text-center" >Image</th>
-<!--                                <th class = "text-center">JSON-LD</th>
--->                                <th class = "text-center">Test Link</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $sno = $page;
-                            foreach ($query as $row):
-                                $sno ++;
-                                ?>
-                                <tr class="tbl_view text-center" >
-                                    <td><?php echo $sno; ?></td>
-                                    <td class = 'text-left' ><?php echo $row->title; ?></td>
-                                    <td class = 'text-left' ><?php echo $row->handle; ?></td>
-                                    <td class = 'text-right' ><?php echo $row->sku; ?></td>
-                                    <td class = 'text-right' >$<?php echo $row->price; ?></td>
-                                    <td class = '' ><img src = "<?= $row->image_url ?>" width = "100" ></td>
-<!--                                    <td class = ''>
-                                      <?php
-//                                        print $liquid->render( array( 'product' => json_decode( base64_decode( $row->data ) ) ) );
-                                      ?>
-                                    </td>
--->                                    <td class = 'text-center' ><a class = "btn btn-primary" target = "_new" href = "https://search.google.com/structured-data/testing-tool/u/0/#url=http://<?php echo $shop . '/products/' . $row->handle; ?>" >Test</a></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div><!-- /.box-body -->
-            </div><!-- /.box -->
-        </div><!-- /.col -->
-    </div><!-- /.row -->
-    
-    <!-- Pagenation -->
-    <div class="row">
-        <div class="col-sm-5">
-            <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
-                <?php echo $summary; ?>    
+<body class="skin-josh">
+    <header class="header">
+        <a href="<?PHP echo base_url(); ?>home" class="logo">
+            <img src="<?PHP echo base_url(); ?>asset/template/img/logo.png" alt="Logo">
+        </a>
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <div>
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <div class="responsive_nav"></div>
+                </a>
             </div>
-        </div>
-        <div class="col-sm-7">
-            <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                <ul class="pagination">
-                    <?php echo $this->pagination->create_links(); ?>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown messages-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="livicon" data-name="message-flag" data-loop="true" data-color="#42aaca" data-hovercolor="#42aaca" data-size="28"></i>
+                            <span class="label label-success">4</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-messages pull-right">
+                            <li class="dropdown-title">4 New Messages</li>
+                            <li class="unread message">
+                                <a href="javascript:;" class="message"> <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read"><span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span></i>
+                                    <img src="<?PHP echo base_url(); ?>asset/template/img/authors/avatar.jpg" class="img-responsive message-image" alt="icon" />
+                                    <div class="message-body">
+                                        <strong>Riot Zeast</strong>
+                                        <br>Hello, You there?
+                                        <br>
+                                        <small>8 minutes ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="unread message">
+                                <a href="javascript:;" class="message">
+                                    <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read"><span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span></i>
+                                    <img src="<?PHP echo base_url(); ?>asset/template/img/authors/avatar1.jpg" class="img-responsive message-image" alt="icon" />
+                                    <div class="message-body">
+                                        <strong>John Kerry</strong>
+                                        <br>Can we Meet ?
+                                        <br>
+                                        <small>45 minutes ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="unread message">
+                                <a href="javascript:;" class="message">
+                                    <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read">
+                                        <span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span>
+                                    </i>
+                                    <img src="<?PHP echo base_url(); ?>asset/template/img/authors/avatar5.jpg" class="img-responsive message-image" alt="icon" />
+                                    <div class="message-body">
+                                        <strong>Jenny Kerry</strong>
+                                        <br>Dont forgot to call...
+                                        <br>
+                                        <small>An hour ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="unread message">
+                                <a href="javascript:;" class="message">
+                                    <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read">
+                                        <span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span>
+                                    </i>
+                                    <img src="<?PHP echo base_url(); ?>asset/template/img/authors/avatar4.jpg" class="img-responsive message-image" alt="icon" />
+                                    <div class="message-body">
+                                        <strong>Ronny</strong>
+                                        <br>Hey! sup Dude?
+                                        <br>
+                                        <small>3 Hours ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="footer">
+                                <a href="#">View all</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown notifications-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="livicon" data-name="bell" data-loop="true" data-color="#e9573f" data-hovercolor="#e9573f" data-size="28"></i>
+                            <span class="label label-warning">7</span>
+                        </a>
+                        <ul class=" notifications dropdown-menu">
+                            <li class="dropdown-title">You have 7 notifications</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    <li>
+                                        <i class="livicon danger" data-n="timer" data-s="20" data-c="white" data-hc="white"></i>
+                                        <a href="#">after a long time</a>
+                                        <small class="pull-right">
+                                            <span class="livicon paddingright_10" data-n="timer" data-s="10"></span>
+                                            Just Now
+                                        </small>
+                                    </li>
+                                    <li>
+                                        <i class="livicon success" data-n="gift" data-s="20" data-c="white" data-hc="white"></i>
+                                        <a href="#">Jef's Birthday today</a>
+                                        <small class="pull-right">
+                                            <span class="livicon paddingright_10" data-n="timer" data-s="10"></span>
+                                            Few seconds ago
+                                        </small>
+                                    </li>
+                                    <li>
+                                        <i class="livicon warning" data-n="dashboard" data-s="20" data-c="white" data-hc="white"></i>
+                                        <a href="#">out of space</a>
+                                        <small class="pull-right">
+                                            <span class="livicon paddingright_10" data-n="timer" data-s="10"></span>
+                                            8 minutes ago
+                                        </small>
+                                    </li>
+                                    <li>
+                                        <i class="livicon bg-aqua" data-n="hand-right" data-s="20" data-c="white" data-hc="white"></i>
+                                        <a href="#">New friend request</a>
+                                        <small class="pull-right">
+                                            <span class="livicon paddingright_10" data-n="timer" data-s="10"></span>
+                                            An hour ago
+                                        </small>
+                                    </li>
+                                    <li>
+                                        <i class="livicon danger" data-n="shopping-cart-in" data-s="20" data-c="white" data-hc="white"></i>
+                                        <a href="#">On sale 2 products</a>
+                                        <small class="pull-right">
+                                            <span class="livicon paddingright_10" data-n="timer" data-s="10"></span>
+                                            3 Hours ago
+                                        </small>
+                                    </li>
+                                    <li>
+                                        <i class="livicon success" data-n="image" data-s="20" data-c="white" data-hc="white"></i>
+                                        <a href="#">Lee Shared your photo</a>
+                                        <small class="pull-right">
+                                            <span class="livicon paddingright_10" data-n="timer" data-s="10"></span>
+                                            Yesterday
+                                        </small>
+                                    </li>
+                                    <li>
+                                        <i class="livicon warning" data-n="thumbs-up" data-s="20" data-c="white" data-hc="white"></i>
+                                        <a href="#">David liked your photo</a>
+                                        <small class="pull-right">
+                                            <span class="livicon paddingright_10" data-n="timer" data-s="10"></span>
+                                            2 July 2014
+                                        </small>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="#">View all</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="<?PHP echo base_url(); ?>asset/template/img/authors/avatar3.jpg" width="35" class="img-circle img-responsive pull-left" height="35" alt="riot">
+                            <div class="riot">
+                                <div>
+                                    Riot
+                                    <span>
+                                        <i class="caret"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header bg-light-blue">
+                                <img src="<?PHP echo base_url(); ?>asset/template/img/authors/avatar3.jpg" width="90" class="img-circle img-responsive" height="90" alt="User Image" />
+                                <p class="topprofiletext">Riot Zeast</p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li>
+                                <a href="view_user.html">
+                                    <i class="livicon" data-name="user" data-s="18"></i> My Profile
+                                </a>
+                            </li>
+                            <li role="presentation"></li>
+                            <li>
+                                <a href="adduser.html">
+                                    <i class="livicon" data-name="gears" data-s="18"></i> Account Settings
+                                </a>
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="lockscreen.html">
+                                        <i class="livicon" data-name="lock" data-s="18"></i> Lock
+                                    </a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="login.html">
+                                        <i class="livicon" data-name="sign-out" data-s="18"></i> Logout
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
-        </div>
-    </div><!-- /.row -->  
+        </nav>
+    </header>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="left-side sidebar-offcanvas">
+            <section class="sidebar ">
+                <div class="page-sidebar  sidebar-nav">
+                    <div class="nav_icons">
+                        <ul class="sidebar_threeicons">
+                            <li>
+                                <a href="<?PHP echo base_url(); ?>home">
+                                    <i class="livicon" data-name="home" title="Advanced tables" data-c="#418BCA" data-hc="#418BCA" data-size="25" data-loop="true"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?PHP echo base_url(); ?>">
+                                    <i class="livicon" data-c="#EF6F6C" title="Gallery" data-hc="#EF6F6C" data-name="image" data-size="25" data-loop="true"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- BEGIN SIDEBAR MENU -->
+                    <ul id="menu" class="page-sidebar-menu">
+                        <li>
+                            <a href="<?PHP echo base_url(); ?>home">
+                                <i class="livicon" data-name="home" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                <span class="title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="#">
+                                <i class="livicon" data-name="image" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
+                                <span class="title">Products</span>
+                                <span class="fa arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="<?PHP echo base_url(); ?>product/template">
+                                        <i class="fa fa-angle-double-right"></i> Templates
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a href="<?PHP echo base_url(); ?>product/manage">
+                                        <i class="fa fa-angle-double-right"></i> Custom Products
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>                                                
+                    </ul>
+                    <!-- END SIDEBAR MENU -->
+                </div>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Right side column. Contains the navbar and content of the page -->
+        <aside class="right-side">
+            <!-- Main content -->
+            <section class="content-header">
+                <h1>Custom Products</h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="<?PHP echo base_url(); ?>home">
+                            <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">Products</a>
+                    </li>
+                    <li class="active">Custom Products</li>
+                </ol>
+            </section>
+            <section class="content">
+                <!--/row-->   
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="#" class="btn btn-success pull-right"><span class="glyphicon glyphicon-plus"></span> New Product </a>
+                    </div>
+                </div>    
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-success filterable" style="overflow:auto;">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> Custom Templates
+                                </h3>
+                            </div>
+                            <div class="panel-body table-responsive">
+                                <table class="table table-striped table-bordered" id="table2" style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Image</th>                                            
+                                            <th>Product Name</th>
+                                            <th>Price</th>
+                                            <th>Status</th>
+                                            <th>action</th>                         
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $sno = 0;
+                                        foreach ($query as $row):
+                                            $sno ++;
+                                             ?>
+                                             <tr class="tbl_view text-center" >              
+                                               <td style="width:10px;">
+                                                    <?php echo $sno; ?>
+                                                </td>
+                                                 <td><a href="#"><img src = "<?= $row->image_url ?>" width = "100" ></a></td>
+                                                <td><?=$row->title ?></td>
+                                                <td><?=$row->price ?></td>
+                                                <td>Yes</td>
+                                                <td>Edit</td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </section>
 
-    <script>
+        </aside>
+        <!-- right-side -->
+    </div>
+        <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Return to top" data-toggle="tooltip" data-placement="left">
+            <i class="livicon" data-name="plane-up" data-size="18" data-loop="true" data-c="#fff" data-hc="white"></i>
+        </a>
+        <!-- global js -->
+        <script src="<?PHP echo base_url(); ?>asset/template/js/app.js" type="text/javascript"></script>
+        <!-- end of global js -->
+        <!-- begining of page level js -->
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/jeditable/js/jquery.jeditable.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/dataTables.bootstrap.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/dataTables.buttons.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/dataTables.colReorder.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/dataTables.responsive.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/dataTables.rowReorder.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/buttons.colVis.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/buttons.html5.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/buttons.print.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/buttons.bootstrap.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/pdfmake.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/vfs_fonts.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/dataTables.scroller.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/js/pages/table-advanced.js"></script>                                                                                                                                                                                                                                                        
+        <!-- end of page level js -->
+    </body>
 
-        $(document).ready(function () {
-
-            var sync_page = 0;
-            var sync_count = 0;
-
-            // Editable
-            $('.text').editable();
-
-            // Sync Button Config
-            $('.btn_sync').btn_init(
-                    'sync',
-                    {class: 'btn-warning', caption: 'Sync'},
-                    {class: 'btn-default fa fa-spinner', caption: ''},
-                    {class: 'btn-success', caption: 'Done'},
-                    {class: 'btn-danger', caption: 'Error'}
-            );
-
-            $('.btn_sync').click(function () {
-                event.preventDefault();
-
-                $(this).btn_action('sync', 'pending');
-
-                // Clear the sync value
-                sync_page = 1;
-                sync_count = 0;
-
-                // Work with process
-                funcSyncProcess();
-
-            });
-
-            var funcSyncProcess = function () {
-                $.ajax({
-                    url: '<?php echo base_url($this->config->item('index_page') . '/product/sync') ?>' + '/' + sync_page,
-                    type: 'GET'
-                }).done(function (data) {
-                    console.log(data);
-                    if (data == 'success')
-                    {
-                        $('.btn_sync').btn_action('sync', 'success');
-
-                        setTimeout(function () {
-                            window.location.reload();
-                        }, 1000
-                                );
-                    } else
-                    {
-                        var arr = data.split('_');
-
-                        sync_page = arr[0];
-                        sync_count = parseInt(sync_count) + parseInt(arr[1]);
-
-                        // Show the products
-                        $('.btn_sync').removeClass('fa fa-spinner');
-                        $('.btn_sync').html(sync_count + ' downloaded ...');
-
-                        // Continue to access
-                        funcSyncProcess();
-                    }
-                });
-            }
-        });
-
-        function sort(field)
-        {
-            $('#sel_sort_field').val(field);
-            $('#sel_sort_direction').val($('#sel_sort_direction').val() == 'ASC' ? 'DESC' : 'ASC');
-
-            $('#frmSearch').submit();
-        }
-
-    </script>
+</html>

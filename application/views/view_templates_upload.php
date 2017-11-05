@@ -241,7 +241,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?PHP echo base_url(); ?>product">
+                                    <a href="<?PHP echo base_url(); ?>product/manage">
                                         <i class="fa fa-angle-double-right"></i> Custom Products
                                     </a>
                                 </li>

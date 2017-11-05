@@ -234,7 +234,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?PHP echo base_url(); ?>product">
+                                    <a href="<?PHP echo base_url(); ?>product/manage">
                                         <i class="fa fa-angle-double-right"></i> Custom Products
                                     </a>
                                 </li>
@@ -269,7 +269,7 @@
                     <div class="row" id="slim">
                         <div id="gallery">
                             <div class="col-md-5 col-xs-12" id="gallery-header-center-left-title">All Galleries</div>
-                            <div class="col-md-5 col-xs-12" id=""><a href="<?PHP echo base_url(); ?>product/upload_template" class="btn btn-primary">Upload Templates</a></div>                            
+                            <div class="col-md-5 col-xs-12" id=""><a href="<?PHP echo base_url(); ?>product/upload_template" class="btn btn-primary"><span class="glyphicon glyphicon-open"></span> Upload Templates </a></div>                            
                             <div class="pull-right">
                                 <div class="col-xs-12">
                                     <button type="button" id="filter-all" class="btn btn-responsive btn-info btn-xs">All</button>
