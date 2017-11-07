@@ -111,9 +111,9 @@ class Home extends MY_Controller {
     $this->load->library('pagination');
 
     // Renter to view
-    //$this->load->view('view_header');  
+    $this->load->view('view_header');  
     $this->load->view('view_home', $data );
-    //->load->view('view_footer');  
+    $this->load->view('view_footer');  
   }    
     
    public function login(){

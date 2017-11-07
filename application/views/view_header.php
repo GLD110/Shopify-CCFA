@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Josh Admin Template</title>
+    <title>KanvasKreations</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,12 +21,20 @@
     <link rel="stylesheet" href="<?PHP echo base_url(); ?>asset/template/vendors/animate/animate.min.css">
     <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datetimepicker/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="<?PHP echo base_url(); ?>asset/template/css/pages/only_dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/buttons.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/colReorder.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/rowReorder.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/buttons.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/scroller.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/css/pages/tables.css" />   
     <!--end of page level css-->
 </head>
 
 <body class="skin-josh">
     <header class="header">
-        <a href="index.html" class="logo">
+        <a href="<?PHP echo base_url(); ?>home" class="logo">
             <img src="<?PHP echo base_url(); ?>asset/template/img/logo.png" alt="Logo">
         </a>
         <nav class="navbar navbar-static-top" role="navigation">
@@ -222,119 +230,3 @@
             </div>
         </nav>
     </header>
-    <div class="wrapper row-offcanvas row-offcanvas-left">
-        <!-- Left side column. contains the logo and sidebar -->
-        <aside class="left-side sidebar-offcanvas">
-            <section class="sidebar ">
-                <div class="page-sidebar  sidebar-nav">
-                    <div class="nav_icons">
-                        <ul class="sidebar_threeicons">
-                            <li>
-                                <a href="<?PHP echo base_url(); ?>home">
-                                    <i class="livicon" data-name="home" title="Advanced tables" data-c="#418BCA" data-hc="#418BCA" data-size="25" data-loop="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?PHP echo base_url(); ?>progressbar/settings">
-                                    <i class="livicon" data-c="#EF6F6C" title="Tasks" data-hc="#EF6F6C" data-name="list-ul" data-size="25" data-loop="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?PHP echo base_url(); ?>purchases/settings">
-                                    <i class="livicon" data-name="barchart" title="Gallery" data-c="#F89A14" data-hc="#F89A14" data-size="25" data-loop="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?PHP echo base_url(); ?>countdown/settings">
-                                    <i class="livicon" data-name="calendar" title="Users List" data-size="25" data-c="#01bc8c" data-hc="#01bc8c" data-loop="true"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="clearfix"></div>
-                    <!-- BEGIN SIDEBAR MENU -->
-                    <ul id="menu" class="page-sidebar-menu">
-                        <li class="active">
-                            <a href="<?PHP echo base_url(); ?>home">
-                                <i class="livicon" data-name="home" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
-                                <span class="title">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="livicon" data-name="list-ul" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
-                                <span class="title">Progress Bar</span>
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>progressbar/settings">
-                                        <i class="fa fa-angle-double-right"></i> Settings
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>progressbar/styles">
-                                        <i class="fa fa-angle-double-right"></i> Styles
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>progressbar/advanced">
-                                        <i class="fa fa-angle-double-right"></i> Advanced
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="livicon" data-name="barchart" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
-                                <span class="title">Purchases</span>
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>purchases/settings">
-                                        <i class="fa fa-angle-double-right"></i> Settings
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>purchases/styles">
-                                        <i class="fa fa-angle-double-right"></i> Styles
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>purchases/advanced">
-                                        <i class="fa fa-angle-double-right"></i> Advanced
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="livicon" data-name="calendar" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
-                                <span class="title">Countdown</span>
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>countdown/settings">
-                                        <i class="fa fa-angle-double-right"></i> Settings
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>countdown/styles">
-                                        <i class="fa fa-angle-double-right"></i> Styles
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>countdown/advanced">
-                                        <i class="fa fa-angle-double-right"></i> Advanced
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <!-- END SIDEBAR MENU -->
-                </div>
-            </section>
-            <!-- /.sidebar -->
-        </aside>
