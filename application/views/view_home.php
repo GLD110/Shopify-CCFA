@@ -107,7 +107,7 @@
                                     </div>
                                     <div class="col-xs-6 text-right">
                                         <small class="stat-label">Last Month</small>
-                                        <h4 id="myTargetElement1.2"></h4>
+                                        <h4 id="myTargetElement1.2"></h4> 
                                     </div>
                                 </div>
                             </div>

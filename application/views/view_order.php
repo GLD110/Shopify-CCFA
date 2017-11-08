@@ -22,7 +22,7 @@
                         </li> 
                         <li>
                             <a href="<?PHP echo base_url(); ?>settings">
-                                <i class="livicon" data-c="#00bc8c" title="Medal" data-hc="#00bc8c" data-name="medal" data-size="25" data-loop="true"></i>
+                                <i class="livicon" data-c="#00bc8c" title="Medal" data-hc="#00bc8c" data-name="medal" data-size="25" data-loop="true"></i> 
                             </a>
                         </li>                        
                     </ul>
