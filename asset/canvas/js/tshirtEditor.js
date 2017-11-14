@@ -9,7 +9,7 @@ var line4;
 var img_width;
 var img_height;
 
-    $(window).load(function(){
+    /*$(window).load(function(){
         //image width and height
         img_width = $('#tshirtFacing').width();
         img_height = $('#tshirtFacing').height();       
@@ -17,7 +17,7 @@ var img_height;
         $('.canvas-container').width(img_width+2).height(img_height);
         $('#tcanvas').width(img_width+2).height(img_height);
         $('.upper-canvas').width(img_width+2).height(img_height);
-    });
+    });*/
 
  	$(document).ready(function() {
     
@@ -105,14 +105,14 @@ var img_height;
 	        
 	  		fabric.Image.fromURL(el.src, function(image) {
 		          image.set({
-		            left: left,
-		            top: top,
+		            left: 320,
+		            top: 320,
 		            angle: 0,
 		            padding: 10,
 		            cornersize: 10,
 	      	  		hasRotatingPoint:true
 		          });
-		          image.scale(getRandomNum(0.1, 0.15)).setCoords();
+		          image.scale(0.1).setCoords();
 		          canvas.add(image);
 		        });
 	  	});	  		  

@@ -93,6 +93,17 @@ class Product extends MY_Controller {
     $this->load->view('view_templates_upload', $data );
     //$this->load->view('view_footer');
   }    
+    
+  public function new_product( $page =  0 ){
+    // Check the login
+    $this->is_logged_in();
+      
+    $data = array();  
+      
+    //$this->load->view('view_header');
+    $this->load->view('view_newproduct', $data );
+    //$this->load->view('view_footer');
+  }     
   
   public function sync( $page = 1 )
   {
