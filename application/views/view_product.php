@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/rowReorder.bootstrap.css">
     <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/buttons.bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/scroller.bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/css/pages/tables.css" />   
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/css/pages/tables.css" />
     <!--end of page level css-->
 </head>
 
@@ -245,12 +245,12 @@
                                 <a href="<?PHP echo base_url(); ?>order">
                                     <i class="livicon" data-c="#F89A14" title="Tasks" data-hc="#F89A14" data-name="tasks" data-size="25" data-loop="true"></i>
                                 </a>
-                            </li> 
+                            </li>
                             <li>
                                 <a href="<?PHP echo base_url(); ?>settings">
                                     <i class="livicon" data-c="#00bc8c" title="Medal" data-hc="#00bc8c" data-name="medal" data-size="25" data-loop="true"></i>
                                 </a>
-                            </li>                              
+                            </li>
                         </ul>
                     </div>
                     <div class="clearfix"></div>
@@ -280,19 +280,19 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li> 
+                        </li>
                         <li>
                             <a href="<?PHP echo base_url(); ?>order">
                                 <i class="livicon" data-name="list-ul" data-size="18" data-c="#EF6F6C" data-hc="#EF6F6C" data-loop="true"></i>
                                 <span class="title">Orders</span>
                             </a>
-                        </li> 
+                        </li>
                         <li>
                             <a href="<?PHP echo base_url(); ?>settings">
                                 <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                                 <span class="title">Settings</span>
                             </a>
-                        </li>                        
+                        </li>
                     </ul>
                     <!-- END SIDEBAR MENU -->
                 </div>
@@ -311,18 +311,18 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">Products</a>
+                        <a href="<?PHP echo base_url(); ?>product/manage">Products</a>
                     </li>
                     <li class="active">Custom Products</li>
                 </ol>
             </section>
             <section class="content">
-                <!--/row-->   
+                <!--/row-->
                 <div class="row">
                     <div class="col-lg-12">
-                        <a href="#" class="btn btn-success pull-right"><span class="glyphicon glyphicon-plus"></span> New Product </a>
+                        <a href="<?PHP echo base_url(); ?>product/new_product" class="btn btn-success pull-right"><span class="glyphicon glyphicon-plus"></span> New Product </a>
                     </div>
-                </div>    
+                </div>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="panel panel-success filterable" style="overflow:auto;">
@@ -336,11 +336,11 @@
                                     <thead>
                                         <tr>
                                             <th>No.</th>
-                                            <th>Image</th>                                            
+                                            <th>Image</th>
                                             <th>Product Name</th>
                                             <th>Price</th>
                                             <th>Status</th>
-                                            <th>action</th>                         
+                                            <th>action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -348,7 +348,7 @@
                                         foreach ($query as $row):
                                             $sno ++;
                                              ?>
-                                             <tr class="tbl_view text-center" >              
+                                             <tr class="tbl_view text-center" >
                                                <td style="width:10px;">
                                                     <?php echo $sno; ?>
                                                 </td>
@@ -364,7 +364,7 @@
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
             </section>
 
         </aside>
@@ -391,7 +391,7 @@
         <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/pdfmake.js"></script>
         <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/vfs_fonts.js"></script>
         <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/dataTables.scroller.js"></script>
-        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/js/pages/table-advanced.js"></script>                                                                                                                                                                                                                                                        
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/js/pages/table-advanced.js"></script>
         <!-- end of page level js -->
     </body>
 
