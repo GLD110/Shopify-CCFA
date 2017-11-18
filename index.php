@@ -33,7 +33,7 @@
  */
 
  define('ENVIRONMENT', 'development' );
- 
+
 if (defined('ENVIRONMENT'))
 {
 	switch (ENVIRONMENT)
@@ -41,7 +41,7 @@ if (defined('ENVIRONMENT'))
 		case 'development':
 			error_reporting(E_ALL);
 		break;
-	
+
 		case 'testing':
 		case 'production':
 			// error_reporting(0);  Temporarily disable
@@ -150,7 +150,7 @@ if (defined('ENVIRONMENT'))
 	if (realpath($system_path) !== FALSE)
 	{
 		$system_path = realpath($system_path).'/';
-	}
+	} 
 
 	// ensure there's a trailing slash
 	$system_path = rtrim($system_path, '/').'/';
