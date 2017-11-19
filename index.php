@@ -150,7 +150,7 @@ if (defined('ENVIRONMENT'))
 	if (realpath($system_path) !== FALSE)
 	{
 		$system_path = realpath($system_path).'/';
-	} 
+	}
 
 	// ensure there's a trailing slash
 	$system_path = rtrim($system_path, '/').'/';
@@ -166,7 +166,7 @@ if (defined('ENVIRONMENT'))
  *  Now that we know the path, set the main path constants
  * -------------------------------------------------------------------
  */
-	// The name of THIS file
+	// The name of THIS file 
 	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
 
 	// The PHP file extension
