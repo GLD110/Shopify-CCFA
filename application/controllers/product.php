@@ -1,11 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Product extends MY_Controller {
-    
+
   public function __construct() {
     parent::__construct();
     $this->load->model( 'Product_model' );
-    
+
     // Define the search values
     $this->_searchConf  = array(
         'name' => '',
@@ -16,13 +16,13 @@ class Product extends MY_Controller {
     );
     $this->_searchSession = 'product_app_page';
   }
-  
+
   public function index(){
     $this->is_logged_in();
-    
+
     $this->manage();
   }
-  
+
   public function manage( $page =  0 ){
     // Check the login
     $this->is_logged_in();
@@ -35,16 +35,16 @@ class Product extends MY_Controller {
          'name' => $this->_searchVal['name'],
          'sort' => $this->_searchVal['sort_field'] . ' ' . $this->_searchVal['sort_direction'],
          'page_number' => $page,
-         'page_size' => $this->_searchVal['page_size'],              
+         'page_size' => $this->_searchVal['page_size'],
     );
     $data['query'] =  $this->Product_model->getList( $arrCondition );
     $data['total_count'] = $this->Product_model->getTotalCount();
     $data['page'] = $page;
     $data['shop'] = $this->session->userdata('shop');
-    
+
     // Define the rendering data
     $data = $data + $this->setRenderData();
-    
+
     // Load Pagenation
     $this->load->library('pagination');
     $this->load->library( 'LiquidLib' );
@@ -53,65 +53,139 @@ class Product extends MY_Controller {
     $this->load->view('view_product', $data );
     //$this->load->view('view_footer');
   }
-   
+
   public function template( $page =  0 ){
     // Check the login
     $this->is_logged_in();
-      
+
     $directory = "product/server/php/files/";
     $images = glob($directory . "*.png");
-      
+
     $templates = array();
 
     foreach($images as $image)
     {
         list($width, $height, $type, $attr) = getimagesize($image);
-        
+
         if($width > $height)
             $dimension = 'landscape';
         else
             $dimension = 'studio';
-        
+
         $temp = array('image'=>$image, 'dimension'=>$dimension);
         array_push($templates, $temp);
-    }      
-      
+    }
+
     $data['templates'] = $templates;
 
     //$this->load->view('view_header');
     $this->load->view('view_templates', $data );
     //$this->load->view('view_footer');
-  }    
-    
+  }
+
   public function upload_template( $page =  0 ){
     // Check the login
     $this->is_logged_in();
-      
-    $data = array();  
-      
+
+    $data = array();
+
     //$this->load->view('view_header');
     $this->load->view('view_templates_upload', $data );
     //$this->load->view('view_footer');
-  }    
-    
+  }
+
   public function new_product( $page =  0 ){
     // Check the login
     $this->is_logged_in();
-      
-    $data = array();  
-      
+
+    $data = array();
+
     //$this->load->view('view_header');
     $this->load->view('view_newproduct', $data );
     //$this->load->view('view_footer');
-  }     
-  
+  }
+
+  public function upload_image(){
+    // Check the login
+    $this->is_logged_in();
+
+    $base_url = $this->config->item('base_url');
+    $app_path = $this->config->item('app_path');
+
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: POST");
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  	   if($_FILES['file']['name'] == '') {
+          echo "Please choose the image file !";
+      }
+      else{
+          $name     = $_FILES['file']['name'];
+          $tmpName  = $_FILES['file']['tmp_name'];
+          $error    = $_FILES['file']['error'];
+          $size     = $_FILES['file']['size'];
+          $fileinfo = getimagesize($_FILES["file"]["tmp_name"]);
+          $filewidth = $fileinfo[0];
+          $fileheight = $fileinfo[1];
+          $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
+          switch ($error) {
+              case UPLOAD_ERR_OK:
+                  $valid = true;
+                  //validate file extensions
+                  if ( !in_array($ext, array('jpg','jpeg','png','gif')) ) {
+                      $valid = false;
+                      $response = 'Invalid file extension.';
+                  }
+                  //validate file size
+                  if ( $size/1024/1024 > 50 ) {
+                      $valid = false;
+                      $response = 'File size is exceeding maximum allowed size.';
+                  }
+
+                  if ( $filewidth < 1024 || $fileheight < 1024 ) {
+                      $valid = false;
+                      $response = 'Image Width and Height is not valid.';
+                  }
+
+                  //upload file
+                  if ($valid) {
+                      $header_url= $base_url . 'product/server/php/';
+                      $response= 'server/php' . 'uploaded_images' . "/". $name;
+                      $targetPath =  $app_path . 'server' . '\\' . 'php' . '\\' . 'uploaded_images' . '\\' . $name;
+                      move_uploaded_file($tmpName,$targetPath);
+                  }
+                  break;
+              case UPLOAD_ERR_INI_SIZE:
+                  $response = 'The uploaded file exceeds the upload_max_filesize directive in php.ini.';
+                  break;
+              case UPLOAD_ERR_PARTIAL:
+                  $response = 'The uploaded file was only partially uploaded.';
+                  break;
+              case UPLOAD_ERR_NO_FILE:
+                  $response = 'No file was uploaded.';
+                  break;
+              case UPLOAD_ERR_NO_TMP_DIR:
+                  $response = 'Missing a temporary folder. Introduced in PHP 4.3.10 and PHP 5.0.3.';
+                  break;
+              case UPLOAD_ERR_CANT_WRITE:
+                  $response = 'Failed to write file to disk. Introduced in PHP 5.1.0.';
+                  break;
+              default:
+                  $response = 'Unknown error';
+              break;
+          }
+          echo $targetPath;
+      }
+  	}
+  }
+
   public function sync( $page = 1 )
   {
     $this->load->model( 'Shopify_model' );
-    
+
     // Get the lastest day
     $last_day = $this->Product_model->getLastUpdateDate();
-    
+
     // Retrive Data from Shop
     $count = 0;
 
@@ -124,7 +198,7 @@ class Product extends MY_Controller {
     else
     {
       $action .= 'limit=10&page=' . $page;
-    } 
+    }
 
     // Retrive Data from Shop
     $productInfo = $this->Shopify_model->accessAPI( $action );
@@ -137,7 +211,7 @@ class Product extends MY_Controller {
         $this->Product_model->addProduct( $product );
       }
     }
-    
+
     // Get the count of product
     if( $last_day != '' && $last_day != $this->config->item('CONST_EMPTY_DATE') && $page == 1 )
     {
@@ -146,7 +220,7 @@ class Product extends MY_Controller {
     else
     {
       if( isset( $productInfo->products )) $count = count( $productInfo->products );
-      $page ++;  
+      $page ++;
     }
 
     if( $count == 0 )
@@ -154,5 +228,4 @@ class Product extends MY_Controller {
     else
       echo $page . '_' . $count;
   }
-}            
-
+}

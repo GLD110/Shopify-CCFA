@@ -22,7 +22,7 @@
 			margin-top: 70px;
 			border-top: 1px solid #E5E5E5;
 			background-color: whiteSmoke;
-			}			
+			}
 	      .color-preview {
 	      	border: 1px solid #CCC;
 	      	margin: 2px;
@@ -34,12 +34,12 @@
 	      	width: 20px;
 	      	height: 20px;
 	      }
-	      .rotate {  
+	      .rotate {
 		    -webkit-transform:rotate(90deg);
 		    -moz-transform:rotate(90deg);
 		    -o-transform:rotate(90deg);
-		    -ms-transform:rotate(90deg);		   
-		}		
+		    -ms-transform:rotate(90deg);
+		}
 		.Arial{font-family:"Arial";}
 		.Helvetica{font-family:"Helvetica";}
 		.MyriadPro{font-family:"Myriad Pro";}
@@ -299,12 +299,12 @@
                                 <a href="<?PHP echo base_url(); ?>order">
                                     <i class="livicon" data-c="#F89A14" title="Tasks" data-hc="#F89A14" data-name="tasks" data-size="25" data-loop="true"></i>
                                 </a>
-                            </li> 
+                            </li>
                             <li>
                                 <a href="<?PHP echo base_url(); ?>settings">
                                     <i class="livicon" data-c="#00bc8c" title="Medal" data-hc="#00bc8c" data-name="medal" data-size="25" data-loop="true"></i>
                                 </a>
-                            </li>                              
+                            </li>
                         </ul>
                     </div>
                     <div class="clearfix"></div>
@@ -334,19 +334,19 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li> 
+                        </li>
                         <li>
                             <a href="<?PHP echo base_url(); ?>order">
                                 <i class="livicon" data-name="list-ul" data-size="18" data-c="#EF6F6C" data-hc="#EF6F6C" data-loop="true"></i>
                                 <span class="title">Orders</span>
                             </a>
-                        </li> 
+                        </li>
                         <li>
                             <a href="<?PHP echo base_url(); ?>settings">
                                 <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                                 <span class="title">Settings</span>
                             </a>
-                        </li>                        
+                        </li>
                     </ul>
                     <!-- END SIDEBAR MENU -->
                 </div>
@@ -371,13 +371,13 @@
                 </ol>
             </section>
             <section class="content" id="typography">
-                <!--/row-->   
+                <!--/row-->
                 <div class="row">
                     <div class="page-header col-xs-12" style="background: url('<?PHP echo base_url(); ?>asset/canvas/img/top_up_12.jpg' );">
                       <a href="" class="tab-selector" data-target = "text" style="display:none;"><img src="<?PHP echo base_url(); ?>asset/canvas/img/top_up_02.jpg" /></a>
                       <a href="" class="tab-selector" data-target = "image" ><img style="margin-left: -4px;" src="<?PHP echo base_url(); ?>asset/canvas/img/top_up_03.jpg" /></a>
-                      <div class="btn-group inline pull-right" id="texteditor" style=" display:none; margin-right: 486px;margin-top: 19px; width: 30%; ">              
-                        <button id="font-family" class="btn dropdown-toggle" data-toggle="dropdown" title="Font Style"><i class="icon-font" style="width:19px;height:19px;"></i></button>                          
+                      <div class="btn-group inline pull-right" id="texteditor" style=" display:none; margin-right: 486px;margin-top: 19px; width: 30%; ">
+                        <button id="font-family" class="btn dropdown-toggle" data-toggle="dropdown" title="Font Style"><i class="icon-font" style="width:19px;height:19px;"></i></button>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="font-family-X">
                           <li><a tabindex="-1" href="#" onclick="setFont('Arial');" class="Arial">Arial</a></li>
                           <li><a tabindex="-1" href="#" onclick="setFont('Helvetica');" class="Helvetica">Helvetica</a></li>
@@ -401,23 +401,23 @@
                         <a class="btn" href="#" rel="tooltip" data-placement="top" data-original-title="Font Color"><input type="hidden" id="text-fontcolor" class="color-picker" size="7" value="#000000"></a>
                         <a class="btn" href="#" rel="tooltip" data-placement="top" data-original-title="Font Border Color"><input type="hidden" id="text-strokecolor" class="color-picker" size="7" value="#000000"></a>
                         <!--<button  type="button" onclick="zoomin()" class="btn btn-lg btn-primary">Zoom In</button>
-                        <button type="button" onclick="zoomout()" class="btn btn-lg btn-primary">Zoom Out</button> -->            
-                      </div>        
+                        <button type="button" onclick="zoomout()" class="btn btn-lg btn-primary">Zoom Out</button> -->
+                      </div>
                         <div class="pull-right" align="" id="imageeditor" style=" margin-top: 20px; margin-right: 20px;">
-                        <div class="btn-group">                          
+                        <div class="btn-group">
                           <button class="btn" id="bring-to-front" title="Bring to Front" style="display:none;"><i class="icon-fast-backward rotate" ></i></button>
                           <button class="btn" id="send-to-back" title="Send to Back" style="display:none;"><i class="icon-fast-forward rotate" ></i></button>
                           <button id="flip" type="button" class="btn" title="Show Back View" style="display:none;"><i class="icon-retweet" ></i></button>
                           <button id="remove-selected" class="btn" title="Delete selected item"><span class="glyphicon glyphicon-remove-circle"></span> Remove Image </button>
                         </div>
-                      </div>  
+                      </div>
                     </div>
-                </div>    
+                </div>
                 <!-- Headings & Paragraph Copy -->
-                <div class="row">      
-                    <div class="col-xs-1"></div>        
+                <div class="row">
+                    <div class="col-xs-1"></div>
                   <div class="col-xs-2">
-                    <div class="tabbable"> <!-- Only required for left/right tabs -->  
+                    <div class="tabbable"> <!-- Only required for left/right tabs -->
 
                       <!-- Text Tab -->
                       <div style="border: 1px solid rgb(200, 202, 201); display:none;" class="tab tab-text">
@@ -443,9 +443,9 @@
                             <input type="file" name="file">
                             <p class="help-block">(Images must be PNGs, JPGs, GIFs that are at least 1024px wide and are less than 50 Mb.)</p>
                           </div>
-                          <input type="submit" id="upload_button" class="btn btn-lg btn-primary" value="Upload">      
+                          <input type="submit" id="upload_button" class="btn btn-lg btn-primary" value="Upload">
                           <div id="avatarlist" style="margin-top: 20px;">
-                          <?php 
+                          <?php
                             $folder = "product/server/php/uploaded_images";
                             $results = scandir($folder);
                             $i=0;
@@ -458,15 +458,15 @@
                                 $i++;
                               }
                             }
-                          ?>                
-                          </div>  
+                          ?>
+                          </div>
                         </form>
                       </div><!-- End of Image Upload Tab -->
 
                       <!-- Image Color Area -->
                       <div style="display:none;">
                         <ul class="nav nav-tabs">
-                          <li class="active"><a href="#tab1" data-toggle="tab">T-Shirt Options</a></li>            
+                          <li class="active"><a href="#tab1" data-toggle="tab">T-Shirt Options</a></li>
                         </ul>
                         <div class="tab-content">
                           <div class="tab-pane active" id="tab1">
@@ -491,38 +491,38 @@
                                 <li class="color-preview" title="Heather Sapphire" style="background-color:#15aeda;"></li>
                                 <li class="color-preview" title="Sky" style="background-color:#a5def8;"></li>
                                 <li class="color-preview" title="Antique Sapphire" style="background-color:#0f77c0;"></li>
-                                <li class="color-preview" title="Heather Navy" style="background-color:#3469b7;"></li>              
+                                <li class="color-preview" title="Heather Navy" style="background-color:#3469b7;"></li>
                                 <li class="color-preview" title="Cherry Red" style="background-color:#c50404;"></li>
                               </ul>
-                            </div>            
-                          </div>  
+                            </div>
+                          </div>
                         </div>
                       </div><!-- End of Image Color Area -->
                     </div>
                   </div>
-                  <div class="col-xs-8">     
-                      
+                  <div class="col-xs-8">
+
                         <div align="center" style="min-height: 32px;">
                           <div class="clearfix">
                             <button style="" type="button" class="btn btn-large btn-block btn-success" name="addToTheBag" id="addToTheBag">Save Image</button>
                           </div>
-                        </div>                       
+                        </div>
 
-                        <!--  EDITOR      -->  
+                        <!--  EDITOR      -->
                         <div style=" margin: 15px auto; width: 80%; overflow: hidden;">
                               <div id="shirtDiv" class="page" style="position: relative; text-align: center;">
                                 <img id="tshirtFacing" src="<?PHP echo base_url(); ?>product/server/php/files/Template 16x20.png" style="width: 100%;"></img>
-                                  <div id="drawingArea" style="position: absolute;top: 0; z-index: 10;width: 850px; height: 1050px;">          
+                                  <div id="drawingArea" style="position: absolute;top: 0; z-index: 10;width: 850px; height: 1050px;">
                                     <canvas id="tcanvas" width="850" height="1050" class="hover" style="-webkit-user-select: none;"></canvas>
                                   </div>
                                 </div>
-                        </div>            
-                    
+                        </div>
+
                         <div class="container" style="margin-top:30px;">
                             <div id="img-out"></div>
                         </div>
                     </div>
-                    <div class="col-xs-1"></div>   
+                    <div class="col-xs-1"></div>
                 </div>
              </section>
         </aside>
@@ -534,19 +534,19 @@
         <!-- global js -->
         <script src="<?PHP echo base_url(); ?>asset/template/js/app.js" type="text/javascript"></script>
         <!-- end of global js -->
-        <!-- begining of page level js --> 
+        <!-- begining of page level js -->
         <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/canvas/js/fabric.js"></script>
         <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/canvas/js/tshirtEditor.js"></script>
         <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/canvas/js/jquery.miniColors.min.js"></script>
-        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/canvas/js/html2canvas.js"></script> 
-        <script src="<?PHP echo base_url(); ?>asset/canvas/js/bootstrap.min.js"></script>    
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/canvas/js/html2canvas.js"></script>
+        <script src="<?PHP echo base_url(); ?>asset/canvas/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function(){
                 var element = $("#shirtDiv"); // global variable
                 var getCanvas = ""; // global variable
 
                 // Upload Whole Image
-                $("#addToTheBag").on('click', function () {		
+                $("#addToTheBag").on('click', function () {
                       html2canvas($("#shirtDiv"), {
                         onrendered: function(canvas) {
                                 /*$("#img-out").append("<img width='100px' style='border:1px solid #efefef;margin-left:30px' height='100px' src='"+canvas.toDataURL()+"' />");
@@ -558,8 +558,8 @@
                                     data: {img: canvas.toDataURL(), action: "save"},
                                     success: function(data){
                                         console.log(data);
-                                    }																					
-                                });					   					
+                                    }
+                                });
                             }
                     });
                 });
@@ -570,14 +570,14 @@
                     var img_id = $(this).attr('data-img');
                     var img_url = $('#'+img_id).attr('src');
                     console.log(img_url);
-                    $.ajax({				
+                    $.ajax({
                         type: "POST",
                         url: "<?PHP echo base_url(); ?>product/server/php/upload_order.php",
                         data: {img: img_url, action: "delete"},
                         success: function(data){
                             console.log(data);
                             $('#'+img_id).remove();
-                        }			
+                        }
 
                     });
                 });
@@ -586,7 +586,7 @@
                 $("#submit_form").on('submit',(function(e) {
                   e.preventDefault();
                   $.ajax({
-                         url: "<?PHP echo base_url(); ?>product/server/php/upload_image.php",
+                         url: "<?PHP echo base_url(); ?>product/upload_image",
                          type: "POST",
                          data:  new FormData(this),
                          contentType: false,
@@ -596,22 +596,22 @@
                               {
                                 var intRegex = "server/php/uploaded_images/";
                                 if(data.search(intRegex) == -1 ){
-                                    alert(intRegex);	
+                                    alert(data);
 
                                 }else{
-                                    
-                                    $("#avatarlist").append("<img style='cursor:pointer;' id=\"img-polaroid-" + $("#avatarlist").find(".img-polaroid").length + "\" class='img-polaroid' src='"+data+"'><button type=\"button\" class=\"upload-cancel\" data-img=\"img-polaroid-" + $("#avatarlist").find(".img-polaroid").length + "\">X</button>");
+
+                                    $("#avatarlist").append("<img style='cursor:pointer; max-width:100%;' id=\"img-polaroid-" + $("#avatarlist").find(".img-polaroid").length + "\" class='img-polaroid' src='"+data+"'><button type=\"button\" class=\"upload-cancel\" data-img=\"img-polaroid-" + $("#avatarlist").find(".img-polaroid").length + "\">X</button>");
 
                                 }
 
                                 //console.log(data);
                               },
-                          error: function(e) 
+                          error: function(e)
                               {
 
-                              }          
+                              }
                     });
-                 }));				
+                 }));
             });
         </script>
         <!-- end of page level js -->

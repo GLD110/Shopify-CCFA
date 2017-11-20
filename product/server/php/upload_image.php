@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 //upload file
                 if ($valid) {
                     $header_url= /*"https://" . */$_SERVER["HTTP_HOST"]."/" . 'shopify-ccfa/product/server/php' . '/';
-                    $response= 'server/php' . IMAGE_FOLDER . "/". $name;
+                    $response= 'server/php/' . IMAGE_FOLDER . "/". $name;
                     $targetPath =  dirname( __FILE__ ) . DIRECTORY_SEPARATOR. IMAGE_FOLDER . DIRECTORY_SEPARATOR. $name;
                     move_uploaded_file($tmpName,$targetPath); 
 
