@@ -566,20 +566,23 @@
 
                 // Cancel Upload
                 $("body").on('click', ".upload-cancel", function () {
-                    $(this).remove();
-                    var img_id = $(this).attr('data-img');
-                    var img_url = $('#'+img_id).attr('src');
-                    console.log(img_url);
-                    $.ajax({
-                        type: "POST",
-                        url: "<?PHP echo base_url(); ?>product/server/php/upload_order.php",
-                        data: {img: img_url, action: "delete"},
-                        success: function(data){
-                            console.log(data);
-                            $('#'+img_id).remove();
-                        }
+                    var ok_delete = confirm("Really, do you want to delete this image?");
+                      if(ok_delete == true){
+                      $(this).remove();
+                      var img_id = $(this).attr('data-img');
+                      var img_url = $('#'+img_id).attr('src');
+                      console.log(img_url);
+                      $.ajax({
+                          type: "POST",
+                          url: "<?PHP echo base_url(); ?>product/delete_image",
+                          data: {img: img_url, action: "delete"},
+                          success: function(data){
+                              console.log(data);
+                              $('#'+img_id).remove();
+                          }
 
-                    });
+                      });
+                  }
                 });
 
                 // Image Upload for avatar

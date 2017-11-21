@@ -7,6 +7,7 @@ if($_POST['action'] == 'save'){
 	$img = str_replace('data:image/png;base64,', '', $img);
 	$img = str_replace(' ', '+', $img);
 	$data = base64_decode($img);
+	print_r($_POST['img']);exit;
 	$file = ORDER_FOLDER . '/' . uniqid() . '.png';
 	//print_r($file);
 	$success = file_put_contents($file, $data);

@@ -112,9 +112,6 @@ class Product extends MY_Controller {
     $base_url = $this->config->item('base_url');
     $app_path = $this->config->item('app_path');
 
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Methods: POST");
-
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   	   if($_FILES['file']['name'] == '') {
           echo "Please choose the image file !";
@@ -150,9 +147,9 @@ class Product extends MY_Controller {
                   //upload file
                   if ($valid) {
                       $header_url= $base_url . 'product/server/php/';
-                      $response= 'server/php' . 'uploaded_images' . "/". $name;
-                      $targetPath =  $app_path . 'server' . '\\' . 'php' . '\\' . 'uploaded_images' . '\\' . $name;
-                      move_uploaded_file($tmpName,$targetPath);
+                      $response= 'server/php/' . 'uploaded_images' . "/". $name;
+                      $targetPath =  $app_path . 'product/server' . '/' . 'php' . '/' . 'uploaded_images' . '/' . $name;
+                      move_uploaded_file($tmpName, $targetPath);
                   }
                   break;
               case UPLOAD_ERR_INI_SIZE:
@@ -174,9 +171,47 @@ class Product extends MY_Controller {
                   $response = 'Unknown error';
               break;
           }
-          echo $targetPath;
+          echo $response;
       }
   	}
+  }
+
+  public function delete_image()
+  {
+    // Check the login
+    $this->is_logged_in();
+
+    $base_url = $this->config->item('base_url');
+    $app_path = $this->config->item('app_path');
+
+    $img = $_POST['img'];
+    if ($_POST['action'] == 'delete'){
+      @unlink($app_path . 'product/' . $img);
+      echo $app_path . 'product/' . $img ;
+    }
+  }
+
+  public function upload_order()
+  {
+    // Check the login
+    $this->is_logged_in();
+
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: POST");
+
+    $base_url = $this->config->item('base_url');
+    $app_path = $this->config->item('app_path');
+
+    $img = $_POST['img'];
+
+    if($_POST['action'] == 'save'){
+  	$img = str_replace('data:image/png;base64,', '', $img);
+  	$img = str_replace(' ', '+', $img);
+  	$data = base64_decode($img);
+  	$file = $app_path . 'product/server/php/orders' . '/' . uniqid() . '.png';
+  	print_r($img);
+  	$success = file_put_contents($file, $data);
+}
   }
 
   public function sync( $page = 1 )
