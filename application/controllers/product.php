@@ -100,6 +100,26 @@ class Product extends MY_Controller {
 
     $data = array();
 
+    $directory = "product/server/php/files/";
+    $images = glob($directory . "*.png");
+
+    $templates = array();
+
+    foreach($images as $image)
+    {
+        list($width, $height, $type, $attr) = getimagesize($image);
+
+        if($width > $height)
+            $dimension = 'landscape';
+        else
+            $dimension = 'studio';
+
+        $temp = array('image'=>$image, 'dimension'=>$dimension);
+        array_push($templates, $temp);
+    }
+
+    $data['templates'] = $templates;
+
     //$this->load->view('view_header');
     $this->load->view('view_newproduct', $data );
     //$this->load->view('view_footer');
@@ -199,17 +219,24 @@ class Product extends MY_Controller {
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: POST");
 
+    $data['shop'] = $this->session->userdata('shop');
     $base_url = $this->config->item('base_url');
     $app_path = $this->config->item('app_path');
+
+    $img_dir = $app_path . 'product/server/php/orders/' . $data['shop'];
+    if (!file_exists($img_dir)) {
+      mkdir($img_dir);
+    }
 
     $img = $_POST['img'];
 
     if($_POST['action'] == 'save'){
-  	$img = str_replace('data:image/png;base64,', '', $img);
+  	//$img = str_replace('data:image/png;base64,', '', $img);
+    $img = str_replace('[removed]', '', $img);
   	$img = str_replace(' ', '+', $img);
   	$data = base64_decode($img);
-  	$file = $app_path . 'product/server/php/orders' . '/' . uniqid() . '.png';
-  	print_r($img);
+  	$file = $img_dir . '/' . uniqid() . '.png';
+  	//print_r(str_replace('[removed]', '', $img));
   	$success = file_put_contents($file, $data);
 }
   }

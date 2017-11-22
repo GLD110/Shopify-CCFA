@@ -68,7 +68,7 @@ var img_height;
 		  //canvas.renderAll();
 		});
 		 		 	 
-		document.getElementById('add-text').onclick = function() {
+		/*document.getElementById('add-text').onclick = function() {
 			var text = $("#text-string").val();
 		    var textSample = new fabric.Text(text, {
 		      left: fabric.util.getRandomInt(0, 200),
@@ -85,7 +85,7 @@ var img_height;
             canvas.item(canvas.item.length-1).hasRotatingPoint = true;    
             //$("#texteditor").css('display', 'block');
             //$("#imageeditor").css('display', 'block');
-	  	};
+	  	};*/
 	  	$("#text-string").keyup(function(){	  		
 	  		var activeObject = canvas.getActiveObject();
 		      if (activeObject && activeObject.type === 'text') {
@@ -131,7 +131,7 @@ var img_height;
 		      });
 		    }
 	  };
-	  document.getElementById('bring-to-front').onclick = function() {		  
+	  /*document.getElementById('bring-to-front').onclick = function() {		  
 		    var activeObject = canvas.getActiveObject(),
 		        activeGroup = canvas.getActiveGroup();
 		    if (activeObject) {
@@ -144,8 +144,8 @@ var img_height;
 		        object.bringToFront();
 		      });
 		    }
-	  };
-	  document.getElementById('send-to-back').onclick = function() {		  
+	  };*/
+	  /*document.getElementById('send-to-back').onclick = function() {		  
 		    var activeObject = canvas.getActiveObject(),
 		        activeGroup = canvas.getActiveGroup();
 		    if (activeObject) {
@@ -158,7 +158,7 @@ var img_height;
 		        object.sendToBack();
 		      });
 		    }
-	  };		  
+	  };*/		  
 	  $("#text-bold").click(function() {		  
 		  var activeObject = canvas.getActiveObject();
 		  if (activeObject && activeObject.type === 'text') {
