@@ -11,10 +11,11 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    <!-- global css --> 
+    <!-- global css -->
     <link href="<?PHP echo base_url(); ?>asset/template/css/app.css" rel="stylesheet" type="text/css" />
     <!-- end of global css -->
     <!--page level css -->
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/fancybox/jquery.fancybox.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/dataTables.bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/buttons.bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>asset/template/vendors/datatables/css/colReorder.bootstrap.css" />
@@ -339,8 +340,7 @@
                                             <th>Image</th>
                                             <th>Product Name</th>
                                             <th>Price</th>
-                                            <th>Status</th>
-                                            <th>action</th>
+                                            <th>Published</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -349,14 +349,17 @@
                                             $sno ++;
                                              ?>
                                              <tr class="tbl_view text-center" >
-                                               <td style="width:10px;">
+                                                <td style="width:10px;">
                                                     <?php echo $sno; ?>
                                                 </td>
-                                                 <td><a href="#"><img src = "<?= $row->image_url ?>" width = "100" ></a></td>
+                                                <td>
+                                                  <a class="fancybox img-responsive" href="<?= $row->image_url ?>" data-fancybox-group="gallery">
+                                                      <img src="<?= $row->image_url ?>" class="all" alt="gallery" width = "100">
+                                                  </a>
+                                                </td>
                                                 <td><?=$row->title ?></td>
                                                 <td><?=$row->price ?></td>
-                                                <td>Yes</td>
-                                                <td>Edit</td>
+                                                <td><?=$row->published_at ?></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -392,6 +395,12 @@
         <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/vfs_fonts.js"></script>
         <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/dataTables.scroller.js"></script>
         <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/js/pages/table-advanced.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/fancybox/jquery.fancybox.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $('.fancybox').fancybox();
+        });
+        </script>
         <!-- end of page level js -->
     </body>
 

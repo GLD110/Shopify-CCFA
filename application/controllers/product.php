@@ -99,7 +99,21 @@ class Product extends MY_Controller {
     $this->is_logged_in();
 
     $data = array();
+    $data['shop'] = $this->session->userdata('shop');
+    $base_url = $this->config->item('base_url');
+    $app_path = $this->config->item('app_path');
 
+    //product Image Folder
+    $product_img_dir = $app_path . 'product/server/php/orders/' . $data['shop'];
+    if (!file_exists($product_img_dir)) {
+      mkdir($product_img_dir);
+    }
+    //Upload Skilled IMage Folder
+    $upload_img_dir = $app_path . 'product/server/php/uploaded_images/' . $data['shop'];
+    if (!file_exists($upload_img_dir)) {
+      mkdir($upload_img_dir);
+    }
+    //Templates Folder
     $directory = "product/server/php/files/";
     $images = glob($directory . "*.png");
 
@@ -129,6 +143,8 @@ class Product extends MY_Controller {
     // Check the login
     $this->is_logged_in();
 
+    $data = array();
+    $data['shop'] = $this->session->userdata('shop');
     $base_url = $this->config->item('base_url');
     $app_path = $this->config->item('app_path');
 
@@ -167,8 +183,9 @@ class Product extends MY_Controller {
                   //upload file
                   if ($valid) {
                       $header_url= $base_url . 'product/server/php/';
-                      $response= 'server/php/' . 'uploaded_images' . "/". $name;
-                      $targetPath =  $app_path . 'product/server' . '/' . 'php' . '/' . 'uploaded_images' . '/' . $name;
+                      $response= 'server/php/uploaded_images/' . $data['shop'] . "/". $name;
+                      $upload_img_dir = $app_path . 'product/server/php/uploaded_images/' . $data['shop'];
+                      $targetPath =  $upload_img_dir . '/' . $name;
                       move_uploaded_file($tmpName, $targetPath);
                   }
                   break;
@@ -224,21 +241,51 @@ class Product extends MY_Controller {
     $app_path = $this->config->item('app_path');
 
     $img_dir = $app_path . 'product/server/php/orders/' . $data['shop'];
-    if (!file_exists($img_dir)) {
-      mkdir($img_dir);
-    }
 
     $img = $_POST['img'];
+    $product_title = $_POST['product_title'];
+    $product_price = $_POST['product_price'];
+    $product_description = $_POST['product_description'];
 
     if($_POST['action'] == 'save'){
-  	//$img = str_replace('data:image/png;base64,', '', $img);
-    $img = str_replace('[removed]', '', $img);
-  	$img = str_replace(' ', '+', $img);
-  	$data = base64_decode($img);
-  	$file = $img_dir . '/' . uniqid() . '.png';
-  	//print_r(str_replace('[removed]', '', $img));
-  	$success = file_put_contents($file, $data);
-}
+      //$img = str_replace('data:image/png;base64,', '', $img);
+      $img = str_replace('[removed]', '', $img);
+      $img = str_replace(' ', '+', $img);
+      $data = base64_decode($img);
+      $file = $img_dir . '/' . uniqid() . '.png';
+      //print_r(str_replace('[removed]', '', $img));
+      //$success = file_put_contents($file, $data);
+
+      $this->load->model( 'Shopify_model' );
+      $action = 'products.json';
+      $products_array = array(
+          'product' => array(
+              'title' => $product_title,
+              'body_html' => "<p>" . $product_description . "<\/p>",
+              'vendor' => "KanvasKreations",
+              "published" => false ,
+              'variants' => array(
+                array(
+                  "price" => $product_price
+                )
+              ),
+              'images' => array(
+                  array('attachment' => $img)
+              )
+          )
+      );
+      // Retrive Data from Shop
+      $productInfo = $this->Shopify_model->accessAPI( $action, $products_array, 'POST' );
+
+      if(!isset($productInfo->product)){
+        echo "Title can't be blank.";
+      }
+      else{
+        // Store to database
+        $this->Product_model->addProduct( $productInfo->product );
+        echo 'Successfully saved!';
+      }
+    }
   }
 
   public function sync( $page = 1 )

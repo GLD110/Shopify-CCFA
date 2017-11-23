@@ -3,12 +3,12 @@ class Order_model extends Master_model
 {
     protected $_tablename = 'orderlist';
     private $_total_count = 0;
-    private $_map_property = array( 
-      'House number/name and street', 
-      'Postcode', 
-      'Year', 
-      'Message', 
-      'Map Address', 
+    private $_map_property = array(
+      'House number/name and street',
+      'Postcode',
+      'Year',
+      'Message',
+      'Map Address',
       'Times',
       'custom address',
       'custom city',
@@ -21,7 +21,7 @@ class Order_model extends Master_model
 
     public function getTotalCount(){ return $this->_total_count; }
     public function getMapProperties(){ return $this->_map_property; }
-    
+
     public function checkMapProduct( $properties )
     {
       $return = false;
@@ -31,13 +31,13 @@ class Order_model extends Master_model
         $return = true; // If there is any property, we consider it as Map Product : 2017.05.12 : By Jubin Ri
         if( in_array($item->name, $this->_map_property ) ){
           $return = true;
-          break;       
+          break;
         }
       }
-      
+
       return $return;
     }
-    
+
     /**
     * Get the list of product/ varints
     * array(
@@ -53,7 +53,7 @@ class Order_model extends Master_model
         $where = array();
 
         // Build the where clause
-        
+
         $where['shop'] = $this->_shop;
 
         /*if( !empty( $arrCondition['customer_name'] ) ) $where["customer_name LIKE '%" . str_replace( "'", "\\'", $arrCondition['customer_name'] ) . "%'"] = '';
@@ -68,11 +68,11 @@ class Order_model extends Master_model
             $this->db->where( $key, $val );
         $query = $this->db->get( $this->_tablename);
         $this->_total_count = $query->num_rows();
-        
+
         // Select fields
         $select = !empty( $arrCondition['is_all'] ) ? '*' : "id, order_id, order_name, created_at, customer_name, amount, fulfillment_status, num_products, country, product_name, variant_id, financial_status, sku";
         $this->db->select( $select );
-        
+
         // Sort
         if( isset( $arrCondition['sort'] ) ) $this->db->order_by( $arrCondition['sort'] );
         $this->db->order_by( 'created_at', 'DESC' );
@@ -90,17 +90,17 @@ class Order_model extends Master_model
             $this->db->where( $key );
         else
             $this->db->where( $key, $val );
-        
+
         $query = $this->db->get( $this->_tablename );
-        
+
         return $query;
     }
-    
+
     // Get the lastest order with varaint_id
     public function getLastOrder($variant_id = '')
     {
         $return = '';
-        
+
         $this->db->select( '*' );
         $this->db->order_by( 'created_at DESC' );
         $this->db->limit( 1 );
@@ -108,46 +108,46 @@ class Order_model extends Master_model
         if($variant_id != ''){
             $this->db->where( 'shop', $this->_shop );
         }
-        
+
         $query = $this->db->get( $this->_tablename );
-        
+
         if( $query->num_rows() > 0 )
         {
             $res = $query->result();
-            
+
             $return = $res[0];
         }
-        
+
         return $return;
-    }    
-    
+    }
+
     // Get the lastest order date
     public function getLastOrderDate()
     {
         $return = '';
-        
+
         $this->db->select( 'created_at' );
         $this->db->order_by( 'created_at DESC' );
         $this->db->limit( 1 );
         $this->db->where( 'shop', $this->_shop );
-        
+
         $query = $this->db->get( $this->_tablename );
-        
+
         if( $query->num_rows() > 0 )
         {
             $res = $query->result();
-            
+
             $return = $res[0]->created_at;
         }
-        
+
         return $return;
     }
-    
+
     /**
     * Add order and check whether it's exist already
-    * 
+    *
     * @param mixed $order
-    */    
+    */
     public function add( $order )
     {
         $customer_name = '';
@@ -179,13 +179,13 @@ class Order_model extends Master_model
             $query = parent::getList('order_id = \'' . $line_item->id . '\'' );
             if( $query->num_rows() > 0 )
                 return false;
-            else
+            elseif ($line_item->vendor == "KanvasKreations")
                 parent::add( $data );
         }
 
         return true;
-    }    
-    
+    }
+
     // ********************** //
-}  
+}
 ?>

@@ -336,16 +336,16 @@
                   <div class="col-xs-1"></div>
                   <div class="col-xs-3">
                     <div class="form-group">
-                      <label>Product Name</label>
-                      <input class="form-control" placeholder="Enter Text">
+                      <label>Product Title</label>
+                      <input id="product-title" name="product_title" class="form-control" placeholder="Enter Text">
                       <label>Product Price</label>
-                      <input class="form-control" placeholder="Enter Number">
+                      <input id="product-price" name="product_price" class="form-control" placeholder="Enter Number">
                     </div>
                   </div>
                   <div class="col-xs-7">
                     <div class="form-group">
                         <label>Product Description</label>
-                        <textarea class="form-control resize_vertical" rows="4"></textarea>
+                        <textarea id="product-des" name="product_description" class="form-control resize_vertical" rows="4"></textarea>
                     </div>
                   </div>
                   <div class="col-xs-1"></div>
@@ -367,14 +367,14 @@
                           <input type="submit" id="upload_button" class="btn btn-lg btn-primary" value="Upload">
                           <div id="avatarlist" style="margin-top: 20px;">
                           <?php
-                            $folder = "product/server/php/uploaded_images";
+                            $folder = "product/server/php/uploaded_images/" . $shop;
                             $results = scandir($folder);
                             $i=0;
                             foreach ($results as $result) {
                               if ($result === '.' or $result === '..') continue;
 
                               if (is_file($folder . '/' . $result)) {
-                                echo '<img style="cursor:pointer; max-width: 100%;" id="img-polaroid-'.$i.'" class="img-polaroid" src="'. 'server/php/uploaded_images' . '/' . $result.'">';
+                                echo '<img style="cursor:pointer; max-width: 100%;" id="img-polaroid-'.$i.'" class="img-polaroid" src="'. 'server/php/uploaded_images/' . $shop . '/' . $result.'">';
                                 echo '<button type="button " title="Delete this image from the server." class="upload-cancel" data-img="img-polaroid-'.$i.'">X</button>';
                                 $i++;
                               }
@@ -400,7 +400,7 @@
                     </div>
                     <div class="col-xs-4" align="right" style="min-height: 32px;">
                       <div class="clearfix">
-                        <button style="" type="button" class="btn btn-danger btn_sizes" name="addToTheBag" id="addToTheBag">Save</button>
+                        <button style="" type="button" class="btn btn-danger btn_sizes" name="addToTheBag" id="addToTheBag">Create</button>
                       </div>
                     </div>
 
@@ -451,9 +451,9 @@
 
                                     type: "POST",
                                     url: "<?PHP echo base_url(); ?>product/upload_order",
-                                    data: {img: canvas.toDataURL(), action: "save"},
+                                    data: {img: canvas.toDataURL(), product_title: $('#product-title').val(), product_price: $('#product-price').val(), product_description: $('#product-des').val(), action: "save"},
                                     success: function(data){
-                                        alert('Successfully saved!')
+                                        alert(data)
                                     }
                                 });
                             }
@@ -493,7 +493,7 @@
                          processData:false,
                          success: function(data)
                               {
-                                var intRegex = "server/php/uploaded_images/";
+                                var intRegex = "server/php/uploaded_images/" + "<?php echo $shop;?>" + "/";
                                 if(data.search(intRegex) == -1 ){
                                     alert(data);
                                 }else{

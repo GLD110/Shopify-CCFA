@@ -4,13 +4,13 @@ class Product_model extends Master_model
   protected $_tablename = 'product';
   private $_total_count = 0;
   private $_arrProductKey = array();
-  
+
   function __construct() {
     parent::__construct();
-    
+
     // Get the variant id list
     $query = parent::getList();
-    
+
     if( $query->num_rows > 0 )
     foreach( $query->result() as $row )
     {
@@ -19,7 +19,7 @@ class Product_model extends Master_model
   }
 
   public function getTotalCount(){ return $this->_total_count; }
-  
+
   /**
   * Get the list of product/ varints
   * array(
@@ -42,10 +42,10 @@ class Product_model extends Master_model
   public function getList( $arrCondition )
   {
       $where = array( 'shop' => $this->_shop );
-      
+
       // Build the where clause
       if( !empty( $arrCondition['name'] ) ) $where["title LIKE '%" . str_replace( "'", "\\'", $arrCondition['name'] ) . "%'"] = '';
-      
+
       // Product only - Group by, Get total records
       if( isset( $arrCondition['page_number'] ) )
       {
@@ -58,7 +58,7 @@ class Product_model extends Master_model
         $query = $this->db->get( $this->_tablename);
         $this->_total_count = $query->num_rows();
       }
-      
+
       // Sort
       if( isset( $arrCondition['sort'] ) ) $this->db->order_by( $arrCondition['sort'] );
       $this->db->order_by( 'product_id', 'DESC' );
@@ -76,38 +76,38 @@ class Product_model extends Master_model
       else
           $this->db->where( $key, $val );
       $query = $this->db->get_where( $this->_tablename );
-      
+
       $arrReturn = array();
       foreach( $query->result() as $row )
       {
         $arrReturn[] = $row;
       }
-      
+
       return $arrReturn;
   }
-  
+
   // Get last updated date
   public function getLastUpdateDate()
   {
       $return = '';
-      
+
       $this->db->select( 'updated_at' );
       $this->db->order_by( 'updated_at DESC' );
       $this->db->limit( 1 );
       $this->db->where( 'shop', $this->_shop );
-      
+
       $query = $this->db->get( $this->_tablename );
-      
+
       if( $query->num_rows() > 0 )
       {
           $res = $query->result();
-          
+
           $return = $res[0]->updated_at;
       }
-      
+
       return $return;
-  }    
-  
+  }
+
   // Add product to database
   public function addProduct( $product )
   {
@@ -117,7 +117,7 @@ class Product_model extends Master_model
     {
       foreach( $product->images as $item ) $arrImage[ $item->id ] = $item->src;
     }
-    
+
     if( isset( $product->variants ) && is_array( $product->variants ) )
     foreach( $product->variants as $variant )
     {
@@ -127,14 +127,14 @@ class Product_model extends Master_model
       if( $image_url == '' && isset( $product->image->src ))
       {
         $image_url = $product->image->src;
-      } 
-      
+      }
+
       // Remove the existing product
       if( in_array( $variant->id, $this->_arrProductKey ))
       {
         return;
       }
-      
+
       // Add the new variant
       $newProductInfo = array(
         'title' => $product->title,
@@ -144,14 +144,16 @@ class Product_model extends Master_model
         'handle' => $product->handle,
         'price' => $variant->price,
         'updated_at' => date( $this->config->item('CONST_DATE_FORMAT'), strtotime($variant->updated_at)),
+        'published_at' => isset($product->published_at)? "Yes" : "No",
         'image_url' => $image_url,
         'data' => base64_encode( json_encode( $product ) ),
       );
-      
-      parent::add( $newProductInfo );
-    }   
+
+      if($product->vendor == 'KanvasKreations')
+        parent::add( $newProductInfo );
+    }
   }
-  
+
   // Delete the product from product_id
   public function deleteProduct( $product_id )
   {
@@ -160,13 +162,13 @@ class Product_model extends Master_model
         return true;
     else
         return false;
-    
+
   }
-  
+
   public function getImageFromHandle( $product_handle )
   {
     $return = '';
-    
+
     $query = parent::getList( 'handle=\'' . $product_handle . '\'' );
     if( $query->num_rows() > 0 )
     {
@@ -176,40 +178,40 @@ class Product_model extends Master_model
         'image_url' => $result[0]->image_url,
       );
     }
-    
+
     return $return;
-    
+
   }
-    
+
   public function getImageFromVaraint( $variant_id )
   {
     $return = '';
-    
+
     $query = parent::getList( 'variant_id=\'' . $variant_id . '\'' );
     if( $query->num_rows() > 0 )
     {
       $result = $query->result();
       $return = $result[0]->image_url;
     }
-    
+
     return $return;
-    
-  }    
-  
+
+  }
+
   public function getProductFromHandle( $product_handle )
   {
     $return = '';
-    
+
     $query = parent::getList( 'handle=\'' . $product_handle . '\'' );
     if( $query->num_rows() > 0 )
     {
       $result = $query->result();
       $return = json_decode( base64_decode( $result[0]->data ));
     }
-    
+
     return $return;
   }
-  
+
   // ********************** //
-}  
+}
 ?>
