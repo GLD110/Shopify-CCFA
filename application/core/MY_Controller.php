@@ -26,7 +26,7 @@ class MY_Controller extends CI_Controller {
             // Get values from Session if there is no post value
             if( is_array( $session_data ) && !isset( $_POST['sel_'.$key]) )
             {
-                $this->_searchVal[$key] = $session_data[$key];
+                $this->_searchVal[$key] = $session_data[$key]; 
             }
         }
 
