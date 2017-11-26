@@ -377,7 +377,7 @@
             <i class="livicon" data-name="plane-up" data-size="18" data-loop="true" data-c="#fff" data-hc="white"></i>
         </a>
         <!-- global js -->
-        <script src="<?PHP echo base_url(); ?>asset/template/js/app.js" type="text/javascript"></script>
+        <script src="<?PHP echo base_url(); ?>asset/template/js/app.js" type="text/javascript"></script> 
         <!-- end of global js -->
         <!-- begining of page level js -->
         <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/jquery.dataTables.js"></script>
