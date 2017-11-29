@@ -39,7 +39,7 @@ class Order extends MY_Controller {
     // Get data
     $arrCondition =  array(
        'customer_name' => $this->_searchVal['customer_name'],
-       'order_name' => $this->_searchVal['order_name'], 
+       'order_name' => $this->_searchVal['order_name'],
        'created_at' => $this->_searchVal['created_at'],
        'sort' => $this->_searchVal['sort_field'] . ' ' . $this->_searchVal['sort_direction'],
     );
@@ -66,7 +66,7 @@ class Order extends MY_Controller {
     //$this->load->view('view_footer');
   }
 
-  public function sync( $shop = "diana4545.myshopify.com" )
+  public function sync( $shop )
   {
     $this->load->model( 'Process_model' );
 

@@ -45,8 +45,7 @@ class Order_model extends Master_model
     *     'sort' => '',                   // String "{column} {order}"
     *     'page_number' => '',            // Int, default : 0
     *     'page_size' => '',              // Int, default Confing['PAGE_SIZE'];
-    *     'is_coupon' => '',              // Int, 0: all, 1: discount, 2: other / default : 0
-    );
+    *     'is_coupon' => '',              // Int, 0: all, 1: discount, 2: other / default : 0);
     */
     public function getList( $arrCondition )
     {

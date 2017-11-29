@@ -410,7 +410,7 @@
     <script src="<?PHP echo base_url(); ?>asset/template/vendors/chartjs/Chart.js"></script>
     <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
     <!--  todolist-->
-    <script src="<?PHP echo base_url(); ?>asset/template/js/pages/todolist.js"></script> 
+    <script src="<?PHP echo base_url(); ?>asset/template/js/pages/todolist.js"></script>
     <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/jeditable/js/jquery.jeditable.js"></script>
     <script type="text/javascript" src="<?PHP echo base_url(); ?>asset/template/vendors/datatables/js/dataTables.bootstrap.js"></script>
