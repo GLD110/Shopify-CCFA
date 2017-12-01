@@ -181,13 +181,16 @@ class Home extends MY_Controller {
         $orderInfo = $this->Shopify_model->accessAPI( $action );
         //var_dump($orderInfo);exit;
 
-        foreach( $orderInfo->orders as $order )
+        if(isset($orderInfo->orders))
         {
-             $this->Order_model->add( $order );
-        }
+          foreach( $orderInfo->orders as $order )
+          {
+               $this->Order_model->add( $order );
+          }
 
-//        echo '<div class="alert alert-success">' . $cntNewOrder . ' order(s) are downloaded successfully</div>';
-        return true;
+  //        echo '<div class="alert alert-success">' . $cntNewOrder . ' order(s) are downloaded successfully</div>';
+          return true;
+      }
     }
 
     public function product_sync( $page = 1 )

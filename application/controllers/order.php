@@ -11,7 +11,6 @@ class Order extends MY_Controller {
       'customer_name' => '',
       'order_name' => '',
       //'shop' => $this->_default_store,
-      'rate' => '1.32',
       'created_at' => '',
       'sort_field' => 'created_at',
       'sort_direction' => 'DESC',
@@ -43,6 +42,8 @@ class Order extends MY_Controller {
        'created_at' => $this->_searchVal['created_at'],
        'sort' => $this->_searchVal['sort_field'] . ' ' . $this->_searchVal['sort_direction'],
     );
+
+    //var_dump($arrCondition);exit;
 
     $this->Order_model->rewriteParam($this->session->userdata( 'shop' ));
     $data['query'] =  $this->Order_model->getList( $arrCondition );

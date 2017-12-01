@@ -346,7 +346,7 @@
                                                     <th>Fulfillment Status</th>
                                                     <th>Checkout Date</th>
                                                     <th>Financial Status</th>
-                                                    <th>SKU</th>
+                                                    <th>Shipping_address</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -368,7 +368,7 @@
                                                         <td><?=$row->fulfillment_status ?></td>
                                                         <td><?=$row->created_at ?></td>
                                                         <td><?=$row->financial_status ?></td>
-                                                        <td><?=$row->sku ?></td>
+                                                        <td><?=$row->shipping_address ?></td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>

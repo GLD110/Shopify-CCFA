@@ -69,7 +69,7 @@ class Order_model extends Master_model
         $this->_total_count = $query->num_rows();
 
         // Select fields
-        $select = !empty( $arrCondition['is_all'] ) ? '*' : "id, order_id, order_name, created_at, customer_name, amount, fulfillment_status, num_products, country, product_name, variant_id, financial_status, sku";
+        $select = !empty( $arrCondition['is_all'] ) ? '*' : "id, order_id, order_name, created_at, customer_name, amount, fulfillment_status, num_products, country, product_name, variant_id, financial_status, shipping_address";
         $this->db->select( $select );
 
         // Sort
@@ -153,7 +153,26 @@ class Order_model extends Master_model
         if( isset( $order->customer)) $customer_name = $order->customer->first_name . ' ' . $order->customer->last_name;
 
         $country = '';
-        if( isset($order->shipping_address->country_code)) $country = $order->shipping_address->country_code;
+        $shipping_address = '';
+        
+        if( isset($order->shipping_address->country_code)) {
+          $country = $order->shipping_address->country_code;
+
+          $shipping_address .= $order->shipping_address->first_name
+          .'<br>'. $order->shipping_address->address1
+          .'<br>'. $order->shipping_address->phone
+          .'<br>'. $order->shipping_address->city
+          .'<br>'. $order->shipping_address->zip
+          .'<br>'. $order->shipping_address->province
+          .'<br>'. $order->shipping_address->country
+          .'<br>'. $order->shipping_address->last_name
+          .'<br>'. $order->shipping_address->company
+          .'<br>'. $order->shipping_address->latitude
+          .'<br>'. $order->shipping_address->longitude
+          .'<br>'. $order->shipping_address->name
+          .'<br>'. $order->shipping_address->country_code
+          .'<br>'. $order->shipping_address->province_code;
+      }
 
         // Get the number of map products
         foreach( $order->line_items as $line_item )
@@ -172,7 +191,7 @@ class Order_model extends Master_model
                 'fulfillment_status' => empty($line_item->fulfillment_status) ? '' :  $line_item->fulfillment_status,
                 'data' => base64_encode( json_encode( $line_item ) ),
                 'financial_status' => empty($order->financial_status) ? '' :  $order->financial_status,
-                'sku' => $line_item->sku
+                'shipping_address' => $shipping_address
             );
             // Check the order is exist already
             $query = parent::getList('order_id = \'' . $line_item->id . '\'' );

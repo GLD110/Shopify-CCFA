@@ -19,12 +19,12 @@
                             <a href="<?PHP echo base_url(); ?>order">
                                 <i class="livicon" data-c="#F89A14" title="Tasks" data-hc="#F89A14" data-name="tasks" data-size="25" data-loop="true"></i>
                             </a>
-                        </li>                         
+                        </li>
                         <li>
                             <a href="<?PHP echo base_url(); ?>settings">
                                 <i class="livicon" data-c="#00bc8c" title="Medal" data-hc="#00bc8c" data-name="medal" data-size="25" data-loop="true"></i>
                             </a>
-                        </li>                        
+                        </li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -60,13 +60,13 @@
                             <i class="livicon" data-name="list-ul" data-size="18" data-c="#EF6F6C" data-hc="#EF6F6C" data-loop="true"></i>
                             <span class="title">Orders</span>
                         </a>
-                    </li> 
+                    </li>
                     <li>
                         <a href="<?PHP echo base_url(); ?>settings">
                             <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                             <span class="title">Settings</span>
                         </a>
-                    </li>                    
+                    </li>
                 </ul>
                 <!-- END SIDEBAR MENU -->
             </div>
@@ -107,7 +107,7 @@
                                     </div>
                                     <div class="col-xs-6 text-right">
                                         <small class="stat-label">Last Month</small>
-                                        <h4 id="myTargetElement1.2"></h4> 
+                                        <h4 id="myTargetElement1.2"></h4>
                                     </div>
                                 </div>
                             </div>
@@ -217,7 +217,7 @@
                                         <th>Fulfillment Status</th>
                                         <th>Checkout Date</th>
                                         <th>Financial Status</th>
-                                        <th>SKU</th>                           
+                                        <th>Shipping_address</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -225,7 +225,7 @@
                                     foreach ($query->result() as $row):
                                         $sno ++;
                                          ?>
-                                         <tr class="tbl_view text-center" >              
+                                         <tr class="tbl_view text-center" >
                                            <td style="width:10px;">
                                                 <?php echo $sno; ?>
                                             </td>
@@ -239,7 +239,7 @@
                                             <td><?=$row->fulfillment_status ?></td>
                                             <td><?=$row->created_at ?></td>
                                             <td><?=$row->financial_status ?></td>
-                                            <td><?=$row->sku ?></td>
+                                            <td><?=$row->shipping_address ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -247,9 +247,9 @@
                         </div>
                     </div>
                 </div>
-            </div>                
+            </div>
         </section>
 
     </aside>
     <!-- right-side -->
-</div>    
+</div>

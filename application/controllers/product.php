@@ -106,12 +106,12 @@ class Product extends MY_Controller {
     //product Image Folder
     $product_img_dir = $app_path . 'product/server/php/orders/' . $data['shop'];
     if (!file_exists($product_img_dir)) {
-      mkdir($product_img_dir);
+      mkdir($product_img_dir, 0755, true);
     }
     //Upload Skilled IMage Folder
     $upload_img_dir = $app_path . 'product/server/php/uploaded_images/' . $data['shop'];
     if (!file_exists($upload_img_dir)) {
-      mkdir($upload_img_dir);
+      mkdir($upload_img_dir, 0755, true);
     }
     //Templates Folder
     $directory = "product/server/php/files/";
