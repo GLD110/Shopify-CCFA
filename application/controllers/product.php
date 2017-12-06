@@ -114,7 +114,7 @@ class Product extends MY_Controller {
       mkdir($upload_img_dir, 0755, true);
     }
     //Templates Folder
-    $directory = "product/server/php/files/";
+    $directory = "admin/product/server/php/files/";
     $images = glob($directory . "*.png");
 
     $templates = array();

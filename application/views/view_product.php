@@ -264,23 +264,10 @@
                             </a>
                         </li>
                         <li class="active">
-                            <a href="#">
+                            <a href="<?PHP echo base_url(); ?>product/manage">
                                 <i class="livicon" data-name="image" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                                 <span class="title">Products</span>
-                                <span class="fa arrow"></span>
                             </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="<?PHP echo base_url(); ?>product/template">
-                                        <i class="fa fa-angle-double-right"></i> Templates
-                                    </a>
-                                </li>
-                                <li class="active">
-                                    <a href="<?PHP echo base_url(); ?>product/manage">
-                                        <i class="fa fa-angle-double-right"></i> Custom Products
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         <li>
                             <a href="<?PHP echo base_url(); ?>order">
