@@ -344,7 +344,7 @@
                                                       <img src="<?= $row->image_url ?>" class="all" alt="gallery" width = "100">
                                                   </a>
                                                 </td>
-                                                <td><?=$row->title ?></td>
+                                                <td><a href="https://<?= $row->shop ?>/admin/products/<?= $row->product_id ?>" target="_blank"><?=$row->title ?></a></td>
                                                 <td><?=$row->price ?></td>
                                                 <td><?=$row->published_at ?></td>
                                             </tr>
