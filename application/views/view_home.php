@@ -191,45 +191,37 @@
                         </div>
                         <div class="panel-body table-responsive">
                             <table class="table table-striped table-bordered" id="table2" style="width:100%;">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Order Name</th>
-                                        <th>Order ID</th>
-                                        <th>Product Name</th>
-                                        <th>Customer</th>
-                                        <th>Total</th>
-                                        <th>Products</th>
-                                        <th>Country</th>
-                                        <th>Fulfillment Status</th>
-                                        <th>Checkout Date</th>
-                                        <th>Financial Status</th>
-                                        <th>Shipping_address</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $sno = 0;
-                                    foreach ($query->result() as $row):
-                                        $sno ++;
-                                         ?>
-                                         <tr class="tbl_view text-center" >
-                                           <td style="width:10px;">
-                                                <?php echo $sno; ?>
-                                            </td>
-                                            <td><?=$row->order_name ?></td>
-                                            <td><?=$row->order_id ?></td>
-                                            <td><?=$row->product_name ?></td>
-                                            <td><?=$row->customer_name ?></td>
-                                            <td>$<?=$row->amount ?></td>
-                                            <td><?=$row->num_products ?></td>
-                                            <td><?=$row->country ?></td>
-                                            <td><?=$row->fulfillment_status ?></td>
-                                            <td><?=$row->created_at ?></td>
-                                            <td><?=$row->financial_status ?></td>
-                                            <td><?=$row->shipping_address ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
+                              <thead>
+                                  <tr>
+                                      <th>No.</th>
+                                      <th>Order Name</th>
+                                      <th>Product Name</th>
+                                      <th>Customer</th>
+                                      <th>Total</th>
+                                      <th>Financial Status</th>
+                                      <th>Checkout Date</th>
+                                      <th>Fulfillment Status</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <?php $sno = 0;
+                                  foreach ($query->result() as $row):
+                                      $sno ++;
+                                       ?>
+                                       <tr class="tbl_view text-center" >
+                                         <td style="width:10px;">
+                                              <?php echo $sno; ?>
+                                          </td>
+                                          <td><a href="https://<?=$row->shop ?>/admin/orders/<?=$row->order_id ?>" target="_blank"><?=$row->order_name ?></a></td>
+                                          <td><?=$row->product_name ?></td>
+                                          <td><?=$row->customer_name ?></td>
+                                          <td>$<?=$row->amount ?></td>
+                                          <td><?=$row->financial_status ?></td>
+                                          <td><?=$row->created_at ?></td>
+                                          <td><?=$row->fulfillment_status ?></td>
+                                      </tr>
+                                  <?php endforeach; ?>
+                              </tbody>
                             </table>
                         </div>
                     </div>

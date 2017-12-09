@@ -130,10 +130,10 @@ class Product_model extends Master_model
       }
 
       // Remove the existing product
-      if( in_array( $variant->id, $this->_arrProductKey ))
+      /*if( in_array( $variant->id, $this->_arrProductKey ))
       {
         return;
-      }
+      }*/
 
       // Add the new variant
       $newProductInfo = array(
@@ -143,13 +143,20 @@ class Product_model extends Master_model
         'sku' => $variant->sku,
         'handle' => $product->handle,
         'price' => $variant->price,
-        'updated_at' => date( $this->config->item('CONST_DATE_FORMAT'), strtotime($variant->updated_at)),
+        'updated_at' =>  str_replace('T', ' ', $variant->updated_at) ,
         'published_at' => isset($product->published_at)? "Yes" : "No",
         'image_url' => $image_url,
         'data' => base64_encode( json_encode( $product ) ),
       );
 
-      if($product->vendor == 'KanvasKreations')
+      $query = parent::getList('variant_id = \'' . $variant->id. '\'');
+
+      if( $query->num_rows() > 0 ){
+          $items = $query->result();
+          $id = $items[0]->id;
+          parent::update( $id, $newProductInfo );
+        }
+      elseif($product->vendor == 'KanvasKreations')
         parent::add( $newProductInfo );
     }
   }

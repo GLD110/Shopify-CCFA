@@ -74,7 +74,7 @@ class Home extends MY_Controller {
         $this->sync();
 
         //product sync
-        //$this->product_sync();
+        $this->product_sync();
 
         $this->manage();
       }
@@ -172,9 +172,10 @@ class Home extends MY_Controller {
 
         // Get the lastest day
         $last_day = $this->Order_model->getLastOrderDate();
+        $last_day = str_replace(' ', 'T', $last_day);
 
         $param = 'status=any';
-        if( $last_day != '' ) $param .= '&processed_at_min=' . urlencode( substr($last_day, 0, 10 ) );
+        if( $last_day != '' ) $param .= '&processed_at_min=' . $last_day;
         $action = 'orders.json?' . $param;
 
         // Retrive Data from Shop
@@ -201,6 +202,11 @@ class Home extends MY_Controller {
 
         // Get the lastest day
         $last_day = $this->Product_model->getLastUpdateDate();
+        $last_day = str_replace(' ', 'T', $last_day);
+        if($last_day == '')
+          $last_day = "2000-01-01T00:00:00-00:00";
+
+        //var_dump($last_day);exit;
 
         // Retrive Data from Shop
         $count = 0;
@@ -238,11 +244,11 @@ class Home extends MY_Controller {
           if( isset( $productInfo->products )) $count = count( $productInfo->products );
           $page ++;
         }
-
-        if( $count == 0 )
-          echo 'success';
-        else
-          echo $page . '_' . $count;
+        //
+        // if( $count == 0 )
+        //   echo 'success';
+        // else
+        //   echo $page . '_' . $count;
     }
 }
 

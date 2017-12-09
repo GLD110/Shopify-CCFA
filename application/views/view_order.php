@@ -341,12 +341,12 @@
                                                        <td style="width:10px;">
                                                             <?php echo $sno; ?>
                                                         </td>
-                                                        <td><?=$row->order_name ?></td>
+                                                        <td><a href="https://<?=$row->shop ?>/admin/orders/<?=$row->order_id ?>" target="_blank"><?=$row->order_name ?></a></td>
                                                         <td><?=$row->product_name ?></td>
                                                         <td><?=$row->customer_name ?></td>
                                                         <td>$<?=$row->amount ?></td>
                                                         <td><?=$row->financial_status ?></td>
-                                                        <td><?=$row->created_at ?></td> 
+                                                        <td><?=$row->created_at ?></td>
                                                         <td><?=$row->fulfillment_status ?></td>
                                                     </tr>
                                                 <?php endforeach; ?>

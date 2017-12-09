@@ -47,7 +47,7 @@ class Order extends MY_Controller {
 
     $this->Order_model->rewriteParam($this->session->userdata( 'shop' ));
     $data['query'] =  $this->Order_model->getList( $arrCondition );
-    var_dump($data['query']->result());exit;
+    //var_dump($data['query']->result());exit;
     $data['total_count'] = $this->Order_model->getTotalCount();
     $data['page'] = $page;
 

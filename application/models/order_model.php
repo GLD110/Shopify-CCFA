@@ -69,7 +69,7 @@ class Order_model extends Master_model
         $this->_total_count = $query->num_rows();
 
         // Select fields
-        $select = !empty( $arrCondition['is_all'] ) ? '*' : "id, order_id, order_name, created_at, customer_name, amount, fulfillment_status, num_products, country, product_name, variant_id, financial_status, shipping_address";
+        $select = !empty( $arrCondition['is_all'] ) ? '*' : "id, order_id, order_name, created_at, customer_name, amount, fulfillment_status, num_products, country, product_name, variant_id, financial_status, shipping_address, shop";
         $this->db->select( $select );
 
         // Sort
@@ -154,7 +154,7 @@ class Order_model extends Master_model
 
         $country = '';
         $shipping_address = '';
-        
+
         if( isset($order->shipping_address->country_code)) {
           $country = $order->shipping_address->country_code;
 
@@ -179,12 +179,12 @@ class Order_model extends Master_model
         {
             // Insert data
             $data = array(
-                'order_id' => $line_item->id,
+                'order_id' => $order->id,
                 'customer_name' => $customer_name,
                 'variant_id' => $line_item->variant_id,
                 'product_name' => $line_item->name,
                 'order_name' => $order->name,
-                'created_at' => date( $this->config->item('CONST_DATE_FORMAT'), strtotime( $order->created_at )) ,
+                'created_at' =>  str_replace('T', ' ', $order->updated_at) ,
                 'amount' => $line_item->price,
                 'country' => $country,
                 'num_products' => $line_item->quantity,
@@ -194,9 +194,13 @@ class Order_model extends Master_model
                 'shipping_address' => $shipping_address
             );
             // Check the order is exist already
-            $query = parent::getList('order_id = \'' . $line_item->id . '\'' );
-            if( $query->num_rows() > 0 )
-                return false;
+            $query = parent::getList('order_id = \'' . $order->id . '\'' . ' AND ' . 'variant_id = \'' . $line_item->variant_id . '\'');
+
+            if( $query->num_rows() > 0 ){
+                $items = $query->result();
+                $id = $items[0]->id;
+                parent::update( $id, $data );
+              }
             elseif ($line_item->vendor == "KanvasKreations")
                 parent::add( $data );
         }
