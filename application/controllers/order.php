@@ -43,8 +43,6 @@ class Order extends MY_Controller {
        'sort' => $this->_searchVal['sort_field'] . ' ' . $this->_searchVal['sort_direction'],
     );
 
-    //var_dump($arrCondition);exit;
-
     $this->Order_model->rewriteParam($this->session->userdata( 'shop' ));
     $data['query'] =  $this->Order_model->getList( $arrCondition );
     //var_dump($data['query']->result());exit;
@@ -85,8 +83,6 @@ class Order extends MY_Controller {
 
     // Retrive Data from Shop
     $orderInfo = $this->Shopify_model->accessAPI( $action );
-
-     // var_dump($orderInfo);
 
     foreach( $orderInfo->orders as $order )
     {
