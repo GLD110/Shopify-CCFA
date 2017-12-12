@@ -180,6 +180,7 @@ class Home extends MY_Controller {
 
         // Retrive Data from Shop
         $orderInfo = $this->Shopify_model->accessAPI( $action );
+        //var_dump($orderInfo);exit;
 
         if(isset($orderInfo->orders))
         {
