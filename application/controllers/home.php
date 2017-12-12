@@ -180,7 +180,6 @@ class Home extends MY_Controller {
 
         // Retrive Data from Shop
         $orderInfo = $this->Shopify_model->accessAPI( $action );
-        //var_dump($orderInfo);exit;
 
         if(isset($orderInfo->orders))
         {
@@ -205,8 +204,6 @@ class Home extends MY_Controller {
         $last_day = str_replace(' ', 'T', $last_day);
         if($last_day == '')
           $last_day = "2000-01-01T00:00:00-00:00";
-
-        //var_dump($last_day);exit;
 
         // Retrive Data from Shop
         $count = 0;
