@@ -188,7 +188,7 @@ class Home extends MY_Controller {
                $this->Order_model->add( $order );
           }
 
-  //        echo '<div class="alert alert-success">' . $cntNewOrder . ' order(s) are downloaded successfully</div>';
+          //echo '<div class="alert alert-success">' . $cntNewOrder . ' order(s) are downloaded successfully</div>';
           return true;
       }
     }
