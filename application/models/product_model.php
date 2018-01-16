@@ -169,7 +169,6 @@ class Product_model extends Master_model
         return true;
     else
         return false;
-
   }
 
   public function getImageFromHandle( $product_handle )
@@ -185,9 +184,7 @@ class Product_model extends Master_model
         'image_url' => $result[0]->image_url,
       );
     }
-
     return $return;
-
   }
 
   public function getImageFromVaraint( $variant_id )
@@ -202,7 +199,6 @@ class Product_model extends Master_model
     }
 
     return $return;
-
   }
 
   public function getProductFromHandle( $product_handle )
@@ -215,7 +211,6 @@ class Product_model extends Master_model
       $result = $query->result();
       $return = json_decode( base64_decode( $result[0]->data ));
     }
-
     return $return;
   }
 
