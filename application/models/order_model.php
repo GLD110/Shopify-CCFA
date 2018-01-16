@@ -34,7 +34,6 @@ class Order_model extends Master_model
           break;
         }
       }
-
       return $return;
     }
 
@@ -52,7 +51,6 @@ class Order_model extends Master_model
         $where = array();
 
         // Build the where clause
-
         $where['shop'] = $this->_shop;
 
         /*if( !empty( $arrCondition['customer_name'] ) ) $where["customer_name LIKE '%" . str_replace( "'", "\\'", $arrCondition['customer_name'] ) . "%'"] = '';
