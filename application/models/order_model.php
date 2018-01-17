@@ -105,16 +105,13 @@ class Order_model extends Master_model
         if($variant_id != ''){
             $this->db->where( 'shop', $this->_shop );
         }
-
         $query = $this->db->get( $this->_tablename );
 
         if( $query->num_rows() > 0 )
         {
             $res = $query->result();
-
             $return = $res[0];
         }
-
         return $return;
     }
 
