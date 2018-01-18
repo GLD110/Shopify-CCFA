@@ -89,7 +89,6 @@ class Order_model extends Master_model
             $this->db->where( $key, $val );
 
         $query = $this->db->get( $this->_tablename );
-
         return $query;
     }
 
@@ -133,7 +132,6 @@ class Order_model extends Master_model
 
             $return = $res[0]->created_at;
         }
-
         return $return;
     }
 
