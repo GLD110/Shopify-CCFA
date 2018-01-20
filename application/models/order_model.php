@@ -165,7 +165,6 @@ class Order_model extends Master_model
           .'<br>'. $order->shipping_address->name
           .'<br>'. $order->shipping_address->country_code
           .'<br>'. $order->shipping_address->province_code;
-
       }
 
         // Get the number of map products
@@ -187,7 +186,7 @@ class Order_model extends Master_model
                 'financial_status' => empty($order->financial_status) ? '' :  $order->financial_status,
                 'shipping_address' => $shipping_address
             );
-            
+
             // Check the order is exist already
             $query = parent::getList('order_id = \'' . $order->id . '\'' . ' AND ' . 'variant_id = \'' . $line_item->variant_id . '\'');
 
