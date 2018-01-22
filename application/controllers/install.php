@@ -137,7 +137,7 @@ class Install extends CI_Controller {
             )
         );
         $return = $this->Shopify_model->accessAPI( 'webhooks.json', $arrParam, 'POST' );
-        /*
+
         $arrParam = array(
             'webhook' => array(
                 'topic' => 'orders/updated',
@@ -166,7 +166,7 @@ class Install extends CI_Controller {
         );
         $return = $this->Shopify_model->accessAPI( 'webhooks.json', $arrParam, 'POST' );
         $this->Log_model->add( 'Shopify', 'webhook', json_encode( $arrParam ), json_encode( $return ) );
-        */
+
 
         // Add Order Paid
         $arrParam = array(

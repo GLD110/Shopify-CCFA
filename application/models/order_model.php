@@ -198,7 +198,6 @@ class Order_model extends Master_model
             elseif ($line_item->vendor == "KanvasKreations")
                 parent::add( $data );
         }
-
         return true;
     }
 
