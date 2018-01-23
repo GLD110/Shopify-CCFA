@@ -190,7 +190,6 @@ class Install extends CI_Controller {
       // ********* Init the database ********* //
       $this->load->model( 'Settings_model' );
       $this->Settings_model->rewriteParam( $this->_shop );
-
       $this->Settings_model->install();
     }
 
@@ -200,6 +199,7 @@ class Install extends CI_Controller {
         $inputText = file_get_contents('php://input');
         if( $inputText == '' ) return;
 
+        //json decode
         $inputInfo = json_decode( $inputText );
 
         $fp = fopen( 'log.txt', 'w+');
