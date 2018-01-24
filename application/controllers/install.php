@@ -75,7 +75,6 @@ class Install extends CI_Controller {
                 var_dump( $result );
             }
         }
-
     }
 
     public function register()
@@ -182,9 +181,7 @@ class Install extends CI_Controller {
         /*$this->load->model( 'Liquid_model' );
         $this->Liquid_model->publish( $this->_shop, $this->_access_token );*/
       }
-
       // *************************** //
-
       return;
 
       // ********* Init the database ********* //
