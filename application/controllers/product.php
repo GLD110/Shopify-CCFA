@@ -37,7 +37,7 @@ class Product extends MY_Controller {
          'page_number' => $page,
          'page_size' => $this->_searchVal['page_size'],
     );
-    $data['query'] =  $this->Product_model->getList( $arrCondition );  
+    $data['query'] =  $this->Product_model->getList( $arrCondition );
     $data['total_count'] = $this->Product_model->getTotalCount();
     $data['page'] = $page;
     $data['shop'] = $this->session->userdata('shop');
