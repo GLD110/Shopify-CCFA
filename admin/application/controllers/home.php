@@ -161,37 +161,37 @@ class Home extends MY_Controller {
       $this->load->view('view_register');
     }
 
-    public function sync()
-    {
-        $this->load->model( 'Shopify_model' );
-        $this->load->model( 'Order_model' );
-
-        $this->Order_model->rewriteParam($this->session->userdata( 'shop' ));
-
-        $cntNewOrder = 0;
-
-        // Get the lastest day
-        $last_day = $this->Order_model->getLastOrderDate();
-
-        $param = 'status=any';
-        if( $last_day != '' ) $param .= '&processed_at_min=' . urlencode( substr($last_day, 0, 10 ) );
-        $action = 'orders.json?' . $param;
-
-        // Retrive Data from Shop
-        $orderInfo = $this->Shopify_model->accessAPI( $action );
-        //var_dump($orderInfo);exit;
-
-        if(isset($orderInfo->orders))
-        {
-          foreach( $orderInfo->orders as $order )
-          {
-               $this->Order_model->add( $order );
-          }
-
-  //        echo '<div class="alert alert-success">' . $cntNewOrder . ' order(s) are downloaded successfully</div>';
-          return true;
-      }
-    }
+  //   public function sync()
+  //   {
+  //       $this->load->model( 'Shopify_model' );
+  //       $this->load->model( 'Order_model' );
+  //
+  //       $this->Order_model->rewriteParam($this->session->userdata( 'shop' ));
+  //
+  //       $cntNewOrder = 0;
+  //
+  //       // Get the lastest day
+  //       $last_day = $this->Order_model->getLastOrderDate();
+  //
+  //       $param = 'status=any';
+  //       if( $last_day != '' ) $param .= '&processed_at_min=' . urlencode( substr($last_day, 0, 10 ) );
+  //       $action = 'orders.json?' . $param;
+  //
+  //       // Retrive Data from Shop
+  //       $orderInfo = $this->Shopify_model->accessAPI( $action );
+  //       //var_dump($orderInfo);exit;
+  //
+  //       if(isset($orderInfo->orders))
+  //       {
+  //         foreach( $orderInfo->orders as $order )
+  //         {
+  //              $this->Order_model->add( $order );
+  //         }
+  //
+  // //        echo '<div class="alert alert-success">' . $cntNewOrder . ' order(s) are downloaded successfully</div>';
+  //         return true;
+  //     }
+  //   }
 
     public function product_sync( $page = 1 )
     {
