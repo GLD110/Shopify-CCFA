@@ -1,12 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class User extends MY_Controller {
-    
+
     public function __construct() {
         parent::__construct();
         $this->load->model('User_model');
     }
-    
+
     public function index(){
         $this->is_logged_in();
 
@@ -24,37 +24,37 @@ class User extends MY_Controller {
             $this->load->view('view_footer');
         }
     }
-   
+
     function pageChangePassword(){
         $this->load->view('view_header');
         $this->load->view('view_changepassword');
         $this->load->view('view_footer');
     }
-    
-    function delUser(){
-        if($this->session->userdata('role') == 'admin'){
-            $id = $this->input->get_post('del_id');
-            $returnDelete = $this->User_model->delete( $id );
-            if( $returnDelete === true ){
-                $this->session->set_flashdata('falsh', '<p class="alert alert-success">One item deleted successfully</p>');    
-            }
-            else{
-                $this->session->set_flashdata('falsh', '<p class="alert alert-danger">Sorry! deleted unsuccessfully : ' . $returnDelete . '</p>');    
-            }
-        }
-        else{
-            $this->session->set_flashdata('falsh', '<p class="alert alert-danger">Sorry! You have no rights to deltete</p>');    
-        }
-        redirect('user/manageUser');
-        exit;
-    }
-   
+
+    // function delUser(){
+    //     if($this->session->userdata('role') == 'admin'){
+    //         $id = $this->input->get_post('del_id');
+    //         $returnDelete = $this->User_model->delete( $id );
+    //         if( $returnDelete === true ){
+    //             $this->session->set_flashdata('falsh', '<p class="alert alert-success">One item deleted successfully</p>');
+    //         }
+    //         else{
+    //             $this->session->set_flashdata('falsh', '<p class="alert alert-danger">Sorry! deleted unsuccessfully : ' . $returnDelete . '</p>');
+    //         }
+    //     }
+    //     else{
+    //         $this->session->set_flashdata('falsh', '<p class="alert alert-danger">Sorry! You have no rights to deltete</p>');
+    //     }
+    //     redirect('user/manageUser');
+    //     exit;
+    // }
+
    function createUser(){
        if($this->session->userdata('role') == 'admin'){
         $this->form_validation->set_rules('name', 'Username', 'callback_username_check');
         $this->form_validation->set_rules('password', 'Password', 'required|matches[cpassword]');
-        
-        if ($this->form_validation->run() == FALSE){       
+
+        if ($this->form_validation->run() == FALSE){
             echo validation_errors('<div class="alert alert-danger">', '</div>');
             exit;
         }
@@ -75,9 +75,9 @@ class User extends MY_Controller {
        }
    }
 
-    public function username_check($str){       
+    public function username_check($str){
         $query =  $this->db->get_where('user', array('user_name'=>$str));
-               
+
         if (count($query->result())>0)
         {
             $this->form_validation->set_message('username_check', 'The %s already exists');
@@ -88,27 +88,27 @@ class User extends MY_Controller {
             return TRUE;
         }
     }
-        
+
     function changePassword(){
         $this->form_validation->set_rules('header_new_cppassword', 'Password', 'required');
         $this->form_validation->set_rules('header_new_password', 'Password', 'required|matches[header_new_cppassword]');
 
-        if ($this->form_validation->run() == FALSE){       
+        if ($this->form_validation->run() == FALSE){
             echo validation_errors('<div class="alert alert-danger">', '</div>');
             exit;
         }
-                
+
         $val = sha1($this->input->post('header_new_password'));
         $pk =  $this->session->userdata('id');
         $data = array(
                'password' => $val
         );
-        
+
         $this->User_model->update( $pk, $data );
-        echo '<p class="alert alert-success">Change password has done successfully</p>';    
+        echo '<p class="alert alert-success">Change password has done successfully</p>';
         exit;
     }
-       
+
     function updateUserPass(){
         if($this->session->userdata('role') == 'admin'){
             $val = sha1($this->input->post('value'));
@@ -120,12 +120,12 @@ class User extends MY_Controller {
             $this->User_model->update( $pk, $data );
         }
     }
-    
+
     function updateUserStatus(){
         if($this->session->userdata('role') == 'admin'){
             $val = $this->input->post('value');
             $pk =  $this->input->post('pk');
-        
+
             $data = array(
                'is_active' => $val
             );
@@ -133,5 +133,4 @@ class User extends MY_Controller {
             $this->User_model->update( $pk, $data );
         }
     }
-}            
-
+}
