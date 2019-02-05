@@ -31,23 +31,23 @@ class User extends MY_Controller {
         $this->load->view('view_footer');
     }
 
-    // function delUser(){
-    //     if($this->session->userdata('role') == 'admin'){
-    //         $id = $this->input->get_post('del_id');
-    //         $returnDelete = $this->User_model->delete( $id );
-    //         if( $returnDelete === true ){
-    //             $this->session->set_flashdata('falsh', '<p class="alert alert-success">One item deleted successfully</p>');
-    //         }
-    //         else{
-    //             $this->session->set_flashdata('falsh', '<p class="alert alert-danger">Sorry! deleted unsuccessfully : ' . $returnDelete . '</p>');
-    //         }
-    //     }
-    //     else{
-    //         $this->session->set_flashdata('falsh', '<p class="alert alert-danger">Sorry! You have no rights to deltete</p>');
-    //     }
-    //     redirect('user/manageUser');
-    //     exit;
-    // }
+    function delUser(){
+        if($this->session->userdata('role') == 'admin'){
+            $id = $this->input->get_post('del_id');
+            $returnDelete = $this->User_model->delete( $id );
+            if( $returnDelete === true ){
+                $this->session->set_flashdata('falsh', '<p class="alert alert-success">One item deleted successfully</p>');
+            }
+            else{
+                $this->session->set_flashdata('falsh', '<p class="alert alert-danger">Sorry! deleted unsuccessfully : ' . $returnDelete . '</p>');
+            }
+        }
+        else{
+            $this->session->set_flashdata('falsh', '<p class="alert alert-danger">Sorry! You have no rights to deltete</p>');
+        }
+        redirect('user/manageUser');
+        exit;
+    }
 
    function createUser(){
        if($this->session->userdata('role') == 'admin'){
