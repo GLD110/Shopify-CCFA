@@ -49,31 +49,31 @@ class User extends MY_Controller {
         exit;
     }
 
-   // function createUser(){
-   //     if($this->session->userdata('role') == 'admin'){
-   //      $this->form_validation->set_rules('name', 'Username', 'callback_username_check');
-   //      $this->form_validation->set_rules('password', 'Password', 'required|matches[cpassword]');
-   //
-   //      if ($this->form_validation->run() == FALSE){
-   //          echo validation_errors('<div class="alert alert-danger">', '</div>');
-   //          exit;
-   //      }
-   //      else{
-   //              if($this->User_model->createUser()){
-   //                  echo '<div class="alert alert-success">This user created successfully</div>';
-   //                  exit;
-   //              }
-   //              else{
-   //                  echo '<div class="alert alert-danger">Sorry ! something went wrong </div>';
-   //                  exit;
-   //              }
-   //          }
-   //     }
-   //     else{
-   //         echo '<div class="alert alert-danger">Invalid user</div>';
-   //         exit;
-   //     }
-   // }
+   function createUser(){
+       if($this->session->userdata('role') == 'admin'){
+        $this->form_validation->set_rules('name', 'Username', 'callback_username_check');
+        $this->form_validation->set_rules('password', 'Password', 'required|matches[cpassword]');
+
+        if ($this->form_validation->run() == FALSE){
+            echo validation_errors('<div class="alert alert-danger">', '</div>');
+            exit;
+        }
+        else{
+                if($this->User_model->createUser()){
+                    echo '<div class="alert alert-success">This user created successfully</div>';
+                    exit;
+                }
+                else{
+                    echo '<div class="alert alert-danger">Sorry ! something went wrong </div>';
+                    exit;
+                }
+            }
+       }
+       else{
+           echo '<div class="alert alert-danger">Invalid user</div>';
+           exit;
+       }
+   }
 
     public function username_check($str){
         $query =  $this->db->get_where('user', array('user_name'=>$str));
