@@ -75,19 +75,19 @@ class User extends MY_Controller {
        }
    }
 
-    public function username_check($str){
-        $query =  $this->db->get_where('user', array('user_name'=>$str));
-
-        if (count($query->result())>0)
-        {
-            $this->form_validation->set_message('username_check', 'The %s already exists');
-            return FALSE;
-        }
-        else
-        {
-            return TRUE;
-        }
-    }
+    // public function username_check($str){
+    //     $query =  $this->db->get_where('user', array('user_name'=>$str));
+    //
+    //     if (count($query->result())>0)
+    //     {
+    //         $this->form_validation->set_message('username_check', 'The %s already exists');
+    //         return FALSE;
+    //     }
+    //     else
+    //     {
+    //         return TRUE;
+    //     }
+    // }
 
     function changePassword(){
         $this->form_validation->set_rules('header_new_cppassword', 'Password', 'required');
