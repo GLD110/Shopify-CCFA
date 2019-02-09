@@ -89,25 +89,25 @@ class User extends MY_Controller {
         }
     }
 
-    function changePassword(){
-        $this->form_validation->set_rules('header_new_cppassword', 'Password', 'required');
-        $this->form_validation->set_rules('header_new_password', 'Password', 'required|matches[header_new_cppassword]');
-
-        if ($this->form_validation->run() == FALSE){
-            echo validation_errors('<div class="alert alert-danger">', '</div>');
-            exit;
-        }
-
-        $val = sha1($this->input->post('header_new_password'));
-        $pk =  $this->session->userdata('id');
-        $data = array(
-               'password' => $val
-        );
-
-        $this->User_model->update( $pk, $data );
-        echo '<p class="alert alert-success">Change password has done successfully</p>';
-        exit;
-    }
+    // function changePassword(){
+    //     $this->form_validation->set_rules('header_new_cppassword', 'Password', 'required');
+    //     $this->form_validation->set_rules('header_new_password', 'Password', 'required|matches[header_new_cppassword]');
+    //
+    //     if ($this->form_validation->run() == FALSE){
+    //         echo validation_errors('<div class="alert alert-danger">', '</div>');
+    //         exit;
+    //     }
+    //
+    //     $val = sha1($this->input->post('header_new_password'));
+    //     $pk =  $this->session->userdata('id');
+    //     $data = array(
+    //            'password' => $val
+    //     );
+    //
+    //     $this->User_model->update( $pk, $data );
+    //     echo '<p class="alert alert-success">Change password has done successfully</p>';
+    //     exit;
+    // }
 
     function updateUserPass(){
         if($this->session->userdata('role') == 'admin'){
