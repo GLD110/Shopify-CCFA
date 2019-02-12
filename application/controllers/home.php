@@ -116,31 +116,31 @@ class Home extends MY_Controller {
     $this->load->view('view_footer');
   }
 
-   // public function login(){
-   //      $this->load->helper('cookie');
-   //
-   //      $this->form_validation->set_rules('username','Username','required');
-   //      $this->form_validation->set_rules('password','Password','required');
-   //
-   //      if ($this->form_validation->run() == FALSE){
-   //          echo validation_errors ('<div class="alert alert-dismissable alert-danger"><small>', '</small></div>' );
-   //      }
-   //      else
-   //      {
-   //          $name = $this->input->post('username');
-   //          $password = $this->input->post('password');
-   //
-   //          $loginCheck = $this->User_model->auth($name, $password);
-   //          if( $loginCheck !== false ){
-   //
-   //              // Set the cookie
-   //              $this->input->set_cookie( $this->config->item('loginCookie'), $loginCheck );
-   //          }
-   //          else{
-   //              echo'<div class="alert alert-dismissable alert-danger"><small>Please Check User Email or Password</small></div>' . $name;
-   //          }
-   //      }
-   //  }
+   public function login(){
+        $this->load->helper('cookie');
+
+        $this->form_validation->set_rules('username','Username','required');
+        $this->form_validation->set_rules('password','Password','required');
+
+        if ($this->form_validation->run() == FALSE){
+            echo validation_errors ('<div class="alert alert-dismissable alert-danger"><small>', '</small></div>' );
+        }
+        else
+        {
+            $name = $this->input->post('username');
+            $password = $this->input->post('password');
+
+            $loginCheck = $this->User_model->auth($name, $password);
+            if( $loginCheck !== false ){
+
+                // Set the cookie
+                $this->input->set_cookie( $this->config->item('loginCookie'), $loginCheck );
+            }
+            else{
+                echo'<div class="alert alert-dismissable alert-danger"><small>Please Check User Email or Password</small></div>' . $name;
+            }
+        }
+    }
 
     public function logout()
     {
