@@ -54,34 +54,34 @@ class Product extends MY_Controller {
     //$this->load->view('view_footer');
   }
 
-  public function template( $page =  0 ){
-    // Check the login
-    $this->is_logged_in();
-
-    $directory = "product/server/php/files/";
-    $images = glob($directory . "*.png");
-
-    $templates = array();
-
-    foreach($images as $image)
-    {
-        list($width, $height, $type, $attr) = getimagesize($image);
-
-        if($width > $height)
-            $dimension = 'landscape';
-        else
-            $dimension = 'studio';
-
-        $temp = array('image'=>$image, 'dimension'=>$dimension);
-        array_push($templates, $temp);
-    }
-
-    $data['templates'] = $templates;
-
-    //$this->load->view('view_header');
-    $this->load->view('view_templates', $data );
-    //$this->load->view('view_footer');
-  }
+  // public function template( $page =  0 ){
+  //   // Check the login
+  //   $this->is_logged_in();
+  //
+  //   $directory = "product/server/php/files/";
+  //   $images = glob($directory . "*.png");
+  //
+  //   $templates = array();
+  //
+  //   foreach($images as $image)
+  //   {
+  //       list($width, $height, $type, $attr) = getimagesize($image);
+  //
+  //       if($width > $height)
+  //           $dimension = 'landscape';
+  //       else
+  //           $dimension = 'studio';
+  //
+  //       $temp = array('image'=>$image, 'dimension'=>$dimension);
+  //       array_push($templates, $temp);
+  //   }
+  //
+  //   $data['templates'] = $templates;
+  //
+  //   //$this->load->view('view_header');
+  //   $this->load->view('view_templates', $data );
+  //   //$this->load->view('view_footer');
+  // }
 
   public function upload_template( $page =  0 ){
     // Check the login
