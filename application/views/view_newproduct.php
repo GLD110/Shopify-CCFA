@@ -15,7 +15,7 @@
     <link href="<?PHP echo base_url(); ?>asset/template/css/app.css" rel="stylesheet" type="text/css" />
     <!-- end of global css -->
     <!--page level css -->
-    <!-- <style type="text/css">
+    <style type="text/css">
 		.upload-cancel {
 			background-color: #525252;
 			color: #F7F7F7;
@@ -36,7 +36,7 @@
             margin-top: -30px;
             margin-left: -10px;
 		}
-	 </style> -->
+	 </style>
     <!--end of page level css-->
 </head>
 
