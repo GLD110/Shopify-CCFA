@@ -40,7 +40,7 @@
     <!--end of page level css-->
 </head>
 
-<!-- <body class="skin-josh"> -->
+<body class="skin-josh">
     <header class="header">
         <a href="<?PHP echo base_url(); ?>home" class="logo">
             <img src="<?PHP echo base_url(); ?>asset/template/img/logo.png" alt="Logo">
