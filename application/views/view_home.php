@@ -1,6 +1,6 @@
 <div class="wrapper row-offcanvas row-offcanvas-left">
     <!-- Left side column. contains the logo and sidebar -->
-    <!-- <aside class="left-side sidebar-offcanvas">
+    <aside class="left-side sidebar-offcanvas">
         <section class="sidebar ">
             <div class="page-sidebar  sidebar-nav">
                 <div class="nav_icons">
@@ -59,7 +59,7 @@
             </div>
         </section>
         <!-- /.sidebar -->
-    </aside> -->
+    </aside>
     <!-- Right side column. Contains the navbar and content of the page -->
     <aside class="right-side">
         <!-- Main content -->
