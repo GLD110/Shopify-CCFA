@@ -8,77 +8,77 @@ class Home extends MY_Controller {
        $this->load->model( 'Order_model' );
    }
 
-   public function index(){
-
-      // APP Redirect
-      if( $this->config->item('PUBLIC_MODE')  )
-      {
-        // Set the shop domain from session or get
-        $shop_domain = $this->session->userdata( 'shop' ) != '' ? $this->session->userdata( 'shop' ) : '';
-        if( $this->input->get('shop') != '' ) $shop_domain = $this->input->get('shop');
-
-        // Get the access token from database
-        $access_token = '';
-        if( $shop_domain != '' ){
-          $this->load->model( 'Shopify_model' );
-          $access_token = $this->Shopify_model->getAccessToken( $shop_domain );
-        }
-
-        // Check the cookie / Check the token is valid!!!
-        if( $access_token == '' )
-        {
-          // If the acess_token is missing from database, then install the app
-          if( $shop_domain == '' )
-          {
-            $data['shop'] = '';
-            $this->load->view('view_newstore', $data );
-          }
-          else
-          {
-            redirect( 'newstore/register?shop=' . $shop_domain );
-          }
-        }
-        else
-        {
-          // Save the access token and shop domain
-          $this->session->set_userdata( array(
-            'shop' => $shop_domain,
-            'access_token' => $access_token
-          ));
-        }
-      }
-      else
-      {
-        $this->session->set_userdata( array(
-            'shop' => $this->config->item('PRIVATE_SHOP'),
-        ));
-      }
-
-      if( $this->session->userdata( 'shop' ) != '' )
-      {
-        // Check Login
-        $this->is_logged_in();
-
-        // Define the search values
-        $this->_searchConf  = array(
-          'customer_name' => '',
-          'order_name' => '',
-          'shop' => $this->session->userdata( 'shop' ),
-          'created_at' => '',
-          'sort_field' => 'created_at',
-          'sort_direction' => 'DESC',
-        );
-        $this->_searchSession = 'order_sels';
-
-        //order sync
-        $this->sync();
-
-        //product sync
-        $this->product_sync();
-
-        $this->manage();
-      }
-   }
+   // public function index(){
+   //
+   //    // APP Redirect
+   //    if( $this->config->item('PUBLIC_MODE')  )
+   //    {
+   //      // Set the shop domain from session or get
+   //      $shop_domain = $this->session->userdata( 'shop' ) != '' ? $this->session->userdata( 'shop' ) : '';
+   //      if( $this->input->get('shop') != '' ) $shop_domain = $this->input->get('shop');
+   //
+   //      // Get the access token from database
+   //      $access_token = '';
+   //      if( $shop_domain != '' ){
+   //        $this->load->model( 'Shopify_model' );
+   //        $access_token = $this->Shopify_model->getAccessToken( $shop_domain );
+   //      }
+   //
+   //      // Check the cookie / Check the token is valid!!!
+   //      if( $access_token == '' )
+   //      {
+   //        // If the acess_token is missing from database, then install the app
+   //        if( $shop_domain == '' )
+   //        {
+   //          $data['shop'] = '';
+   //          $this->load->view('view_newstore', $data );
+   //        }
+   //        else
+   //        {
+   //          redirect( 'newstore/register?shop=' . $shop_domain );
+   //        }
+   //      }
+   //      else
+   //      {
+   //        // Save the access token and shop domain
+   //        $this->session->set_userdata( array(
+   //          'shop' => $shop_domain,
+   //          'access_token' => $access_token
+   //        ));
+   //      }
+   //    }
+   //    else
+   //    {
+   //      $this->session->set_userdata( array(
+   //          'shop' => $this->config->item('PRIVATE_SHOP'),
+   //      ));
+   //    }
+   //
+   //    if( $this->session->userdata( 'shop' ) != '' )
+   //    {
+   //      // Check Login
+   //      $this->is_logged_in();
+   //
+   //      // Define the search values
+   //      $this->_searchConf  = array(
+   //        'customer_name' => '',
+   //        'order_name' => '',
+   //        'shop' => $this->session->userdata( 'shop' ),
+   //        'created_at' => '',
+   //        'sort_field' => 'created_at',
+   //        'sort_direction' => 'DESC',
+   //      );
+   //      $this->_searchSession = 'order_sels';
+   //
+   //      //order sync
+   //      $this->sync();
+   //
+   //      //product sync
+   //      $this->product_sync();
+   //
+   //      $this->manage();
+   //    }
+   // }
 
   public function manage( $page =  0 ){
 
